@@ -1,0 +1,2463 @@
+
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بەرنامەی ئیسلامی</title>
+    <style>
+      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Noto Naskh Arabic', Tahoma, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark .container {
+            background: rgba(30, 30, 40, 0.95);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header Styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        body.dark .header {
+            border-bottom-color: #444;
+        }
+
+        .app-title {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #2196f3, #4caf50);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .language-selector {
+            display: flex;
+            background: #f0f0f0;
+            border-radius: 50px;
+            padding: 5px;
+        }
+
+        body.dark .language-selector {
+            background: #333;
+        }
+
+        .lang-btn {
+            padding: 8px 20px;
+            border: none;
+            background: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #2196f3;
+            color: white;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .theme-toggle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background: #f0f0f0;
+            cursor: pointer;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .theme-toggle {
+            background: #333;
+            color: #ffd700;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+        }
+
+        /* Tabs Styles */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        body.dark .tab-btn {
+            background: #333;
+            color: #ccc;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(45deg, #2196f3, #4caf50);
+            color: white;
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        body.dark .card {
+            background: #2a2a3a;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Home Page Styles */
+        .clock-card {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .clock-display {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .date-display {
+            font-size: 20px;
+            opacity: 0.9;
+        }
+        
+        /* كاونتهری سه‌ردان */
+        .counter-card {
+            text-align: center;
+            background: linear-gradient(135deg, #051d2f 0%, #051d2f 100%);
+            color: rgb(255, 255, 255);
+            padding: 15px;
+        }
+        body.dark .counter-card {
+            background: linear-gradient(135deg, #156562 0%, #ffffff 100%);
+        }
+        .visitor-count {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .feature-item {
+            background: #333344;
+        }
+
+        .feature-item:hover {
+            background: #e3f2fd;
+            transform: scale(1.05);
+        }
+
+        body.dark .feature-item:hover {
+            background: #3a3a4a;
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2196f3;
+        }
+
+        body.dark .feature-title {
+            color: #64b5f6;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: #666;
+        }
+
+        body.dark .feature-desc {
+            color: #aaa;
+        }
+
+        /* Quran Styles */
+        .surah-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .search-box, .hadith-search, .settings-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .search-box, body.dark .hadith-search, body.dark .settings-input {
+            background: #333;
+            border-color: #444;
+            color: white;
+        }
+
+        .search-box:focus, .hadith-search:focus, .settings-input:focus {
+            outline: none;
+            border-color: #2196f3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+        }
+
+        .type-filter, .order-select, .category-select, .settings-select {
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        body.dark .type-filter, body.dark .order-select, body.dark .category-select, body.dark .settings-select {
+            background: #333;
+            border-color: #444;
+            color: white;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .tag {
+            background: #333;
+        }
+
+        .tag.active {
+            background: #2196f3;
+            color: white;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+        }
+
+        .surah-list, .hadith-list-container, .bookmarks-container, .favorites-container {
+            display: grid;
+            gap: 15px;
+            max-height: 500px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .surah-item, .hadith-item, .bookmark-item, .favorite-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        body.dark .surah-item, body.dark .hadith-item, body.dark .bookmark-item, body.dark .favorite-item {
+            background: #333344;
+        }
+
+        .surah-item:hover, .hadith-item:hover, .bookmark-item:hover, .favorite-item:hover {
+            background: #e3f2fd;
+            transform: translateX(5px);
+        }
+
+        body.dark .surah-item:hover, body.dark .hadith-item:hover, body.dark .bookmark-item:hover, body.dark .favorite-item:hover {
+            background: #3a3a4a;
+        }
+
+        .surah-number {
+            width: 40px;
+            height: 40px;
+            background: #2196f3;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        .surah-info {
+            flex: 1;
+        }
+
+        .surah-name {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .surah-meta {
+            font-size: 14px;
+            color: #666;
+        }
+
+        body.dark .surah-meta {
+            color: #aaa;
+        }
+
+        /* Ayah View Styles */
+        .ayah-view {
+            display: none;
+        }
+
+        .ayah-view.active {
+            display: block;
+        }
+
+        .back-btn {
+            padding: 10px 20px;
+            background: #666;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: #555;
+            transform: translateX(-5px);
+        }
+
+        .bismillah {
+            text-align: center;
+            font-size: 28px;
+            color: #2e7d32;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f1f8e9;
+            border-radius: 10px;
+            border-right: 5px solid #4caf50;
+        }
+
+        body.dark .bismillah {
+            background: #1b5e20;
+            color: #c8e6c9;
+        }
+
+        .ayah-item {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            border-right: 4px solid #2196f3;
+            position: relative;
+        }
+
+        body.dark .ayah-item {
+            background: #333344;
+            border-right-color: #64b5f6;
+        }
+
+        .ayah-number-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #ff9800;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .ayah-text {
+            font-size: 22px;
+            line-height: 1.8;
+            text-align: justify;
+            color: #2c3e50;
+        }
+
+        body.dark .ayah-text {
+            color: #e0e0e0;
+        }
+
+        /* Hadith Styles */
+        .hadith-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Counter Styles */
+        .counter-display {
+            font-size: 72px;
+            font-weight: bold;
+            color: #2196f3;
+            margin: 30px 0;
+            text-shadow: 0 4px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .counter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .counter-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-plus {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-minus {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-reset {
+            background: #ff9800;
+            color: white;
+        }
+
+        .counter-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .dhikr-list, .tasbih-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .dhikr-item, .tasbih-btn {
+            padding: 15px 25px;
+            background: #2196f3;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            border: none;
+        }
+
+        .dhikr-item:hover, .tasbih-btn:hover {
+            background: #1976d2;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+        }
+
+        /* Settings Styles */
+        .settings-section {
+            margin-bottom: 30px;
+        }
+
+        .settings-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2196f3;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        body.dark .settings-title {
+            color: #64b5f6;
+            border-bottom-color: #444;
+        }
+
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        body.dark .setting-item {
+            background: #333344;
+        }
+
+        .setting-label {
+            font-weight: 500;
+        }
+
+        .setting-value {
+            color: #666;
+        }
+
+        body.dark .setting-value {
+            color: #aaa;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #2196f3;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .about-content {
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .about-content p {
+            margin-bottom: 15px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        body.dark .footer {
+            border-top-color: #444;
+            color: #aaa;
+        }
+
+        .salawat {
+            font-size: 18px;
+            color: #4caf50;
+            margin-bottom: 10px;
+        }
+
+        body.dark .salawat {
+            color: #81c784;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .tabs {
+                justify-content: center;
+            }
+            
+            .tab-btn {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .clock-display {
+                font-size: 36px;
+            }
+            
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .surah-controls, .hadith-controls {
+                flex-direction: column;
+            }
+            
+            .search-box, .hadith-search, .settings-input, .type-filter, .order-select, .category-select, .settings-select {
+                width: 100%;
+            }
+            
+            .ayah-text {
+                font-size: 18px;
+            }
+            
+            .setting-item {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .clock-display {
+                font-size: 28px;
+            }
+            
+            .counter-display {
+                font-size: 48px;
+            }
+            
+            .counter-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+            
+            .dhikr-item, .tasbih-btn {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+        }
+
+        /* English specific styles */
+        body.english {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body.english .ayah-text {
+            font-family: 'Traditional Arabic', 'Noto Naskh Arabic', serif;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        body.dark ::-webkit-scrollbar-track {
+            background: #2a2a3a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #2196f3;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1976d2;
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2196f3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="app-title" id="app-title">بەرنامەی ئیسلامی</h1>
+            <div class="controls">
+                <div class="language-selector">
+                    <button class="lang-btn active" onclick="changeLang('ku')" data-lang="ku">کوردی</button>
+                    <button class="lang-btn" onclick="changeLang('ar')" data-lang="ar">عربی</button>
+                    <button class="lang-btn" onclick="changeLang('en')" data-lang="en">English</button>
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <span id="theme-icon">🌙</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('home')" data-tab="home" data-ku="🏠 سەرەکی" data-ar="🏠 الرئيسية" data-en="🏠 Home">🏠 سەرەکی</button>
+            <button class="tab-btn" onclick="showTab('quran')" data-tab="quran" data-ku="📖 قورئان" data-ar="📖 القرآن" data-en="📖 Quran">📖 قورئان</button>
+            <button class="tab-btn" onclick="showTab('hadith')" data-tab="hadith" data-ku="💬 فەرموودە" data-ar="💬 الحديث" data-en="💬 Hadith">💬 فەرموودە</button>
+            <button class="tab-btn" onclick="showTab('dhikr')" data-tab="dhikr" data-ku="📿 زیکر" data-ar="📿 الذكر" data-en="📿 Dhikr">📿 زیکر</button>
+            <button class="tab-btn" onclick="showTab('tasbih')" data-tab="tasbih" data-ku="⭕ تەسبیح" data-ar="⭕ التسبيح" data-en="⭕ Tasbih">⭕ تەسبیح</button>
+            <button class="tab-btn" onclick="showTab('bookmarks')" data-tab="bookmarks" data-ku="🔖 نیشانەکان" data-ar="🔖 العلامات" data-en="🔖 Bookmarks">🔖 نیشانەکان</button>
+            <button class="tab-btn" onclick="showTab('favorites')" data-tab="favorites" data-ku="⭐ دڵخوازەکان" data-ar="⭐ المفضلة" data-en="⭐ Favorites">⭐ دڵخوازەکان</button>
+            <button class="tab-btn" onclick="showTab('settings')" data-tab="settings" data-ku="⚙️ ڕێکخستن" data-ar="⚙️ الإعدادات" data-en="⚙️ Settings">⚙️ ڕێکخستن</button>
+        </div>
+
+        <div id="home" class="tab-content active">
+            <div class="card clock-card">
+                <h1 id="current-time">کاتی ئێستا</h1>
+                <div class="clock-display" id="clock">00:00:00</div>
+                <div class="date-display" id="date"><h1>یەکشەممە</h1></div>
+            </div>
+
+            <div class="card counter-card">
+                <h2 id="visitor-title">📊 ژمارەی سەردان کردن</h2>
+                <div class="visitor-count" id="visitor-count-display">0</div>
+                <p id="visitor-desc" style="opacity: 0.8; font-size: 14px;">سوپاس بۆ سەردانەکەت</p>
+            </div>
+
+            <div class="card">
+                <h3 id="features-title" style="margin-bottom: 15px;">تایبەتمەندییەکان</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">📖</div>
+                        <div class="feature-title" id="feature1-title">قورئانی پیرۆز</div>
+                        <div class="feature-desc" id="feature1-desc">١١٤ سورەت تەواو</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💬</div>
+                        <div class="feature-title" id="feature2-title">فەرموودەکان</div>
+                        <div class="feature-desc" id="feature2-desc">٢٠٠+ فەرموودەی پێغەمبەر</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📿</div>
+                        <div class="feature-title" id="feature3-title">ژمێرەری زیکر</div>
+                        <div class="feature-desc" id="feature3-desc">زیکر و تەسبیح</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔖</div>
+                        <div class="feature-title" id="feature4-title">نیشانەدان</div>
+                        <div class="feature-desc" id="feature4-desc">نیشانەکردنی سورەت و فەرموودە</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🏷️</div>
+                        <div class="feature-title" id="feature5-title">تەگەرە</div>
+                        <div class="feature-desc" id="feature5-desc">کەلاسیکردن بە تەگەرە</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔍</div>
+                        <div class="feature-title" id="feature6-title">گەڕان</div>
+                        <div class="feature-desc" id="feature6-desc">گەڕانی پێشکەوتوو</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="quran" class="tab-content">
+            <div id="surah-list-view">
+                <div class="card">
+                    <h2 id="surah-list-title" style="margin-bottom: 20px; text-align: center;">📖 سورەتەکانی قورئان</h2>
+                    
+                    <div class="surah-controls">
+                        <input type="text" class="search-box" id="surah-search" placeholder="🔍 گەڕان بە ناوی سورەت..." oninput="filterSurahs()">
+                        <select class="type-filter" id="surah-type-filter" onchange="filterSurahs()">
+                            <option value="all" data-ku="هەموو" data-ar="الكل" data-en="All">هەموو</option>
+                            <option value="makki" data-ku="مەککەیی" data-ar="مكية" data-en="Makki">مەککەیی</option>
+                            <option value="madani" data-ku="مەدەنی" data-ar="مدنية" data-en="Madani">مەدەنی</option>
+                            <option value="long" data-ku="درێژ" data-ar="طويلة" data-en="Long">درێژ</option>
+                            <option value="short" data-ku="کورت" data-ar="قصيرة" data-en="Short">کورت</option>
+                        </select>
+                        <select class="order-select" id="surah-order" onchange="filterSurahs()">
+                            <option value="number" data-ku="ژمارە" data-ar="رقم" data-en="Number">ژمارە</option>
+                            <option value="name" data-ku="ناو" data-ar="اسم" data-en="Name">ناو</option>
+                            <option value="length" data-ku="درێژی" data-ar="طول" data-en="Length">درێژی</option>
+                        </select>
+                    </div>
+
+                    <div class="tag-container" id="surah-tags">
+                        <div class="tag active" onclick="filterByTag('all')" data-ku="هەموو" data-ar="الكل" data-en="All">هەموو</div>
+                        <div class="tag" onclick="filterByTag('popular')" data-ku="باو" data-ar="مشهورة" data-en="Popular">باو</div>
+                        <div class="tag" onclick="filterByTag('protection')" data-ku="پارێزگاری" data-ar="حماية" data-en="Protection">پارێزگاری</div>
+                        <div class="tag" onclick="filterByTag('mercy')" data-ku="میھرەبان" data-ar="رحمة" data-en="Mercy">میھرەبان</div>
+                        <div class="tag" onclick="filterByTag('guidance')" data-ku="ڕێنوێنی" data-ar="هداية" data-en="Guidance">ڕێنوێنی</div>
+                        <div class="tag" onclick="filterByTag('faith')" data-ku="باوەڕ" data-ar="إيمان" data-en="Faith">باوەڕ</div>
+                        <div class="tag" onclick="filterByTag('healing')" data-ku="چاکبوونەوە" data-ar="شفاء" data-en="Healing">چاکبوونەوە</div>
+                    </div>
+
+                    <div class="surah-list" id="surah-list"></div>
+                </div>
+            </div>
+
+            <div id="ayah-view" class="ayah-view">
+                <button class="back-btn" onclick="backToSurahs()" id="back-btn">⬅ گەڕانەوە</button>
+                <div class="card">
+                    <h2 id="surah-title" style="text-align: center; margin-bottom: 20px;"></h2>
+                    <div style="display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
+                        <button onclick="bookmarkSurah()" id="bookmark-btn" style="padding: 10px 20px; background: linear-gradient(45deg, #ff9800, #ff5722); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔖 نیشانە</button>
+                        <button onclick="addToFavorites()" id="favorite-btn" style="padding: 10px 20px; background: linear-gradient(45deg, #f44336, #e91e63); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">⭐ دڵخواز</button>
+                        <button onclick="shareSurah()" id="share-btn" style="padding: 10px 20px; background: linear-gradient(45deg, #2196f3, #3f51b5); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">↪️ هاوبەشکردن</button>
+                    </div>
+                    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+                    <div id="ayah-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="hadith" class="tab-content">
+            <div class="card">
+                <h2 id="hadith-title" style="margin-bottom: 20px; text-align: center;">💬 فەرموودەکانی پێغەمبەر (ص)</h2>
+                
+                <div class="hadith-controls">
+                    <input type="text" class="hadith-search" id="hadith-search" placeholder="🔍 گەڕان لە فەرموودەکان..." oninput="filterHadiths()">
+                    <select class="category-select" id="hadith-category" onchange="filterHadiths()">
+                        <option value="all" data-ku="هەموو" data-ar="الكل" data-en="All">هەموو</option>
+                        <option value="faith" data-ku="باوەڕ" data-ar="الإيمان" data-en="Faith">باوەڕ</option>
+                        <option value="morals" data-ku="خەسڵەت" data-ar="الأخلاق" data-en="Morals">خەسڵەت</option>
+                        <option value="worship" data-ku="پەرستن" data-ar="العبادة" data-en="Worship">پەرستن</option>
+                        <option value="knowledge" data-ku="زانین" data-ar="العلم" data-en="Knowledge">زانین</option>
+                        <option value="family" data-ku="خێزان" data-ar="الأسرة" data-en="Family">خێزان</option>
+                        <option value="charity" data-ku="خێرخوازی" data-ar="الصدقة" data-en="Charity">خێرخوازی</option>
+                    </select>
+                </div>
+
+                <div class="tag-container" id="hadith-tags">
+                    <div class="tag active" onclick="filterHadithByTag('all')" data-ku="هەموو" data-ar="الكل" data-en="All">هەموو</div>
+                    <div class="tag" onclick="filterHadithByTag('popular')" data-ku="باو" data-ar="مشهورة" data-en="Popular">باو</div>
+                    <div class="tag" onclick="filterHadithByTag('short')" data-ku="کورت" data-ar="قصيرة" data-en="Short">کورت</div>
+                    <div class="tag" onclick="filterHadithByTag('mercy')" data-ku="میھرەبان" data-ar="رحمة" data-en="Mercy">میھرەبان</div>
+                    <div class="tag" onclick="filterHadithByTag('patience')" data-ku="سەبر" data-ar="صبر" data-en="Patience">سەبر</div>
+                    <div class="tag" onclick="filterHadithByTag('forgiveness')" data-ku="لێبوردن" data-ar="مغفرة" data-en="Forgiveness">لێبوردن</div>
+                    <div class="tag" onclick="filterHadithByTag('wisdom')" data-ku="ژیری" data-ar="حكمة" data-en="Wisdom">ژیری</div>
+                </div>
+
+                <div class="hadith-list-container" id="hadith-list"></div>
+            </div>
+        </div>
+
+        <div id="dhikr" class="tab-content">
+            <div class="card" style="text-align: center;">
+                <h2 id="dhikr-title" style="margin-bottom: 20px;">📿 ژمێرەری زیکر</h2>
+                <div class="counter-display" id="dhikr-count">0</div>
+                
+                <div class="counter-buttons">
+                    <button class="counter-btn btn-plus" onclick="dhikrCount++; updateDhikrDisplay()">+</button>
+                    <button class="counter-btn btn-minus" onclick="if(dhikrCount>0){dhikrCount--; updateDhikrDisplay()}">-</button>
+                    <button class="counter-btn btn-reset" onclick="dhikrCount=0; updateDhikrDisplay()">↻</button>
+                </div>
+
+                <div class="dhikr-list" id="dhikr-items">
+                    <div class="dhikr-item" onclick="dhikrCount+=33; updateDhikrDisplay()" data-text="سبحان الله">سبحان الله</div>
+                    <div class="dhikr-item" onclick="dhikrCount+=33; updateDhikrDisplay()" data-text="الحمد لله">الحمد لله</div>
+                    <div class="dhikr-item" onclick="dhikrCount+=33; updateDhikrDisplay()" data-text="الله أكبر">الله أكبر</div>
+                    <div class="dhikr-item" onclick="dhikrCount+=100; updateDhikrDisplay()" data-text="لا إله إلا الله">لا إله إلا الله</div>
+                    <div class="dhikr-item" onclick="dhikrCount+=100; updateDhikrDisplay()" data-text="استغفر الله">استغفر الله</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="tasbih" class="tab-content">
+            <div class="card" style="text-align: center;">
+                <h2 id="tasbih-title" style="margin-bottom: 20px;">⭕ تەسبیحی ئەلکترۆنی</h2>
+                <div class="counter-display" id="tasbih-count">0</div>
+                
+                <div class="counter-buttons">
+                    <button class="counter-btn btn-plus" onclick="tasbihCount++; updateTasbihDisplay()">+</button>
+                    <button class="counter-btn btn-minus" onclick="if(tasbihCount>0){tasbihCount--; updateTasbihDisplay()}">-</button>
+                    <button class="counter-btn btn-reset" onclick="tasbihCount=0; updateTasbihDisplay()">↻</button>
+                </div>
+
+                <div class="tasbih-buttons" id="tasbih-buttons">
+                    <button class="tasbih-btn" onclick="startTasbih(33, 'سبحان الله')" data-ku="سبحان الله (33)" data-ar="سبحان الله (33)" data-en="Subhan Allah (33)">سبحان الله (33)</button>
+                    <button class="tasbih-btn" onclick="startTasbih(33, 'الحمد لله')" data-ku="الحمد لله (33)" data-ar="الحمد لله (33)" data-en="Alhamdulillah (33)">الحمد لله (33)</button>
+                    <button class="tasbih-btn" onclick="startTasbih(34, 'الله أكبر')" data-ku="الله أكبر (34)" data-ar="الله أكبر (34)" data-en="Allahu Akbar (34)">الله أكبر (34)</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="bookmarks" class="tab-content">
+            <div class="card">
+                <h2 id="bookmarks-title" style="margin-bottom: 20px; text-align: center;">🔖 نیشانەکان</h2>
+                <div class="bookmarks-container" id="bookmarks-list"></div>
+            </div>
+        </div>
+
+        <div id="favorites" class="tab-content">
+            <div class="card">
+                <h2 id="favorites-title" style="margin-bottom: 20px; text-align: center;">⭐ دڵخوازەکان</h2>
+                <div class="favorites-container" id="favorites-list"></div>
+            </div>
+        </div>
+
+        <div id="settings" class="tab-content">
+            <div class="card">
+                <h2 id="settings-title" style="margin-bottom: 30px; text-align: center;">⚙️ ڕێکخستن</h2>
+                
+                <div class="settings-section">
+                    <h3 class="settings-title" id="display-settings">ڕووکار</h3>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="theme-label">شێوازی تاریک</div>
+                            <div class="setting-value" id="theme-value">بەکارهێنانی شێوازی تاریک لە شەودا</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="dark-mode-toggle" onchange="toggleDarkMode()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="font-size-label">قەبارەی فۆنت</div>
+                            <div class="setting-value" id="font-size-value">قەبارەی فۆنت بۆ نیشاندانی ئایەتەکان</div>
+                        </div>
+                        <select class="settings-select" id="font-size-select" onchange="changeFontSize()">
+                            <option value="small" data-ku="بچووک" data-ar="صغير" data-en="Small">بچووک</option>
+                            <option value="medium" data-ku="مامناوەند" data-ar="متوسط" data-en="Medium">مامناوەند</option>
+                            <option value="large" data-ku="گەورە" data-ar="كبير" data-en="Large">گەورە</option>
+                            <option value="xlarge" data-ku="زۆر گەورە" data-ar="كبير جدا" data-en="Extra Large">زۆر گەورە</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="language-label">زمان</div>
+                            <div class="setting-value" id="language-value">زمانی بەرنامە</div>
+                        </div>
+                        <select class="settings-select" id="language-select" onchange="changeLanguageSetting()">
+                            <option value="ku" data-ku="کوردی" data-ar="الكردية" data-en="Kurdish">کوردی</option>
+                            <option value="ar" data-ku="عەرەبی" data-ar="العربية" data-en="Arabic">عەرەبی</option>
+                            <option value="en" data-ku="ئینگلیزی" data-ar="الإنجليزية" data-en="English">ئینگلیزی</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3 class="settings-title" id="quran-settings">ڕێکخستنی قورئان</h3>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="arabic-font-label">فۆنتی عەرەبی</div>
+                            <div class="setting-value" id="arabic-font-value">جۆری فۆنت بۆ نووسینی عەرەبی</div>
+                        </div>
+                        <select class="settings-select" id="arabic-font-select" onchange="changeArabicFont()">
+                            <option value="default" data-ku="بنەڕەتی" data-ar="إفتراضي" data-en="Default">بنەڕەتی</option>
+                            <option value="uthmani" data-ku="عوسمانی" data-ar="عثماني" data-en="Uthmani">عوسمانی</option>
+                            <option value="naskh" data-ku="نسخ" data-ar="نسخ" data-en="Naskh">نسخ</option>
+                            <option value="me-quran" data-ku="می قورئان" data-ar="مي قرآن" data-en="Me Quran">می قورئان</option>
+                        </select>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="translation-label">وەرگێڕان</div>
+                            <div class="setting-value" id="translation-value">نیشاندانی وەرگێڕانی ئایەتەکان</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="show-translation" onchange="toggleTranslation()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3 class="settings-title" id="notification-settings">ئاگانامە</h3>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="prayer-notification-label">ئاگانامەی نوێژ</div>
+                            <div class="setting-value" id="prayer-notification-value">ئاگانامە بۆ کاتی نوێژەکان</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="prayer-notification-toggle" onchange="togglePrayerNotifications()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="dhikr-reminder-label">ئەندێشەی زیکر</div>
+                            <div class="setting-value" id="dhikr-reminder-value">ئەندێشە بۆ زیکرکردن</div>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="dhikr-reminder-toggle" onchange="toggleDhikrReminders()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3 class="settings-title" id="data-settings">داتا</h3>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="export-label">هەناردەکردن</div>
+                            <div class="setting-value" id="export-value">هەناردەکردنی نیشانە و دڵخوازەکان</div>
+                        </div>
+                        <button onclick="exportData()" style="padding: 10px 20px; background: #4caf50; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">📥 هەناردەکردن</button>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="import-label">هاوێنەکردن</div>
+                            <div class="setting-value" id="import-value">هاوێنەکردنی نیشانە و دڵخوازەکان</div>
+                        </div>
+                        <button onclick="importData()" style="padding: 10px 20px; background: #2196f3; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">📤 هاونەکردن</button>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div>
+                            <div class="setting-label" id="reset-label">ڕێکخستنەوە</div>
+                            <div class="setting-value" id="reset-value">ڕێکخستنەوەی هەموو ڕێکخستنەکان</div>
+                        </div>
+                        <button onclick="resetSettings()" style="padding: 10px 20px; background: #f44336; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;">🔄 ڕێکخستنەوە</button>
+                    </div>
+                </div>
+                
+                <div class="settings-section">
+                    <h3 class="settings-title" id="about-title">دەربارەی ئێمە</h3>
+                    
+                    <div class="about-content" id="about-content">
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'ku';
+        let dhikrCount = 0;
+        let tasbihCount = 0;
+        let tasbihGoal = 33;
+        let currentSurah = null;
+        let bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let currentSurahTag = 'all';
+        let currentHadithTag = 'all';
+        
+        // Settings
+        let settings = JSON.parse(localStorage.getItem('settings')) || {
+            darkMode: false,
+            fontSize: 'medium',
+            language: 'ku',
+            arabicFont: 'default',
+            showTranslation: false,
+            prayerNotifications: false,
+            dhikrReminders: false
+        };
+
+        // ============================================================
+        // كاونتهری سەردان (Visitor Counter) - لە ٠ تا ژمارەی دیاریکراو
+        // ============================================================
+        // ژمارەی زۆرترین سەردان (دەتوانیت ئەم ژمارەیە بگۆڕیت بە هەر ژمارەیەک کە دەتەوێت)
+        const MAX_VISITS = 100;
+        
+        let visitorCount = localStorage.getItem('visitorCount');
+        
+        if (visitorCount === null) {
+            // یەکەم جار: ژمارەکە دابنێ بە 1
+            visitorCount = 1;
+            localStorage.setItem('visitorCount', visitorCount);
+            localStorage.setItem('has_visited_before', 'true');
+        } else {
+            visitorCount = parseInt(visitorCount);
+            const hasVisited = localStorage.getItem('has_visited_before');
+            
+            // ئەگەر ژمارەکە گەیشتبێتە MAX_VISITS، هیچ زیاد ناکات
+            if (visitorCount < MAX_VISITS) {
+                if (!hasVisited) {
+                    // ئەم براوزەرە بۆ یەکەم جارە - ژمارەکە زیاد بکە
+                    visitorCount++;
+                    localStorage.setItem('visitorCount', visitorCount);
+                    localStorage.setItem('has_visited_before', 'true');
+                }
+            } else {
+                // گەیشتووە بە سنووری دیاریکراو - زیاد ناکات
+                console.log("گەیشتوویتە بەرزترین ژمارەی ڕێگەپێدراو ( " + MAX_VISITS + " )!");
+            }
+        }
+        // ============================================================
+
+        const translations = {
+            ku: {
+                appTitle: "بەرنامەی ئیسلامی",
+                currentTime: "کاتی ئێستا",
+                featuresTitle: "تایبەتمەندییەکان",
+                feature1: "قورئانی پیرۆز",
+                feature1Desc: "١١٤ سورەت تەواو",
+                feature2: "فەرموودەکان",
+                feature2Desc: "٢٠٠+ فەرموودەی پێغەمبەر",
+                feature3: "ژمێرەری زیکر",
+                feature3Desc: "زیکر و تەسبیح",
+                feature4: "نیشانەدان",
+                feature4Desc: "نیشانەکردنی سورەت و فەرموودە",
+                feature5: "تەگەرە",
+                feature5Desc: "کەلاسیکردن بە تەگەرە",
+                feature6: "گەڕان",
+                feature6Desc: "گەڕانی پێشکەوتوو",
+                surahListTitle: "📖 سورەتەکانی قورئان",
+                searchPlaceholder: "🔍 گەڕان بە ناوی سورەت...",
+                backBtn: "⬅ گەڕانەوە",
+                hadithTitle: "💬 فەرموودەکانی پێغەمبەر (ص)",
+                hadithSearch: "🔍 گەڕان لە فەرموودەکان...",
+                dhikrTitle: "📿 ژمێرەری زیکر",
+                tasbihTitle: "⭕ تەسبیحی ئەلکترۆنی",
+                bookmarksTitle: "🔖 نیشانەکان",
+                favoritesTitle: "⭐ دڵخوازەکان",
+                settingsTitle: "⚙️ ڕێکخستن",
+                displaySettings: "ڕووکار",
+                themeLabel: "شێوازی تاریک",
+                themeValue: "بەکارهێنانی شێوازی تاریک لە شەودا",
+                fontSizeLabel: "قەبارەی فۆنت",
+                fontSizeValue: "قەبارەی فۆنت بۆ نیشاندانی ئایەتەکان",
+                languageLabel: "زمان",
+                languageValue: "زمانی بەرنامە",
+                quranSettings: "ڕێکخستنی قورئان",
+                arabicFontLabel: "فۆنتی عەرەبی",
+                arabicFontValue: "جۆری فۆنت بۆ نووسینی عەرەبی",
+                translationLabel: "وەرگێڕان",
+                translationValue: "نیشاندانی وەرگێڕانی ئایەتەکان",
+                notificationSettings: "ئاگانامە",
+                prayerNotificationLabel: "ئاگانامەی نوێژ",
+                prayerNotificationValue: "ئاگانامە بۆ کاتی نوێژەکان",
+                dhikrReminderLabel: "ئەندێشەی زیکر",
+                dhikrReminderValue: "ئەندێشە بۆ زیکرکردن",
+                dataSettings: "داتا",
+                exportLabel: "هەناردەکردن",
+                exportValue: "هەناردەکردنی نیشانە و دڵخوازەکان",
+                importLabel: "هاوێنەکردن",
+                importValue: "هاوێنەکردنی نیشانە و دڵخوازەکان",
+                resetLabel: "ڕێکخستنەوە",
+                resetValue: "ڕێکخستنەوەی هەموو ڕێکخستنەکان",
+                aboutTitle: "دەربارەی ئێمە",
+                salawat: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+                copyright: "© ٢٠٢٤ بەرنامەی ئیسلامی - هەموو مافەکان پارێزراون",
+                completed: "تەواو بوو! اللەمەت لێ!",
+                bookmarkAdded: "نیشانە کرا!",
+                favoriteAdded: "دڵخواز کرا!",
+                shareText: "سەیری ئەم سورەتە بکە لە بەرنامەی ئیسلامی",
+                noBookmarks: "هیچ نیشانەیەک نیە",
+                noFavorites: "هیچ دڵخوازێک نیە",
+                days: ["یەکشەممە", "دووشەممە", "سێشەممە", "چوارشەممە", "پێنجشەممە", "هەینی", "شەممە"],
+                months: ["کانوونی دووەم", "شوبات", "ئازار", "نیسان", "ئایار", "حوزەیران", "تەممووز", "ئاب", "ئەیلوول", "تشرینی یەکەم", "تشرینی دووەم", "کانوونی یەکەم"],
+                settingsSaved: "ڕێکخستنەکان پاشەکەوت کران!",
+                dataExported: "داتا هەناردە کراو!",
+                dataImported: "داتا هاونە کراو!",
+                settingsReset: "ڕێکخستنەکان ڕێکخرانەوە!",
+                confirmReset: "ئایا دڵنیایت کە دەتەوێت هەموو ڕێکخستنەکان ڕێکبخەیتەوە؟",
+                visitorTitle: "📊 ژمارەی سەردانکەران",
+                visitorDesc: "سوپاس بۆ سەردانەکەت"
+            },
+            ar: {
+                appTitle: "التطبيق الإسلامي",
+                currentTime: "الوقت الحالي",
+                featuresTitle: "المميزات",
+                feature1: "القرآن الكريم",
+                feature1Desc: "١١٤ سورة كاملة",
+                feature2: "الأحاديث",
+                feature2Desc: "٢٠٠+ حديث نبوي",
+                feature3: "عداد الذكر",
+                feature3Desc: "ذكر وتسابيح",
+                feature4: "العلامات",
+                feature4Desc: "وضع علامات على السور والأحاديث",
+                feature5: "الوسوم",
+                feature5Desc: "التصنيف بالوسوم",
+                feature6: "البحث",
+                feature6Desc: "بحث متقدم",
+                surahListTitle: "📖 سور القرآن الكريم",
+                searchPlaceholder: "🔍 البحث باسم السورة...",
+                backBtn: "⬅ العودة",
+                hadithTitle: "💬 أحاديث النبي صلى الله عليه وسلم",
+                hadithSearch: "🔍 البحث في الأحاديث...",
+                dhikrTitle: "📿 عداد الذكر",
+                tasbihTitle: "⭕ السبح الإلكترونية",
+                bookmarksTitle: "🔖 العلامات",
+                favoritesTitle: "⭐ المفضلة",
+                settingsTitle: "⚙️ الإعدادات",
+                displaySettings: "العرض",
+                themeLabel: "الوضع المظلم",
+                themeValue: "استخدام الوضع المظلم في الليل",
+                fontSizeLabel: "حجم الخط",
+                fontSizeValue: "حجم الخط لعرض الآيات",
+                languageLabel: "اللغة",
+                languageValue: "لغة التطبيق",
+                quranSettings: "إعدادات القرآن",
+                arabicFontLabel: "خط العربية",
+                arabicFontValue: "نوع الخط للكتابة العربية",
+                translationLabel: "الترجمة",
+                translationValue: "عرض ترجمة الآيات",
+                notificationSettings: "الإشعارات",
+                prayerNotificationLabel: "إشعارات الصلاة",
+                prayerNotificationValue: "إشعارات لأوقات الصلاة",
+                dhikrReminderLabel: "تذكير الذكر",
+                dhikrReminderValue: "تذكير للذكر",
+                dataSettings: "البيانات",
+                exportLabel: "تصدير",
+                exportValue: "تصدير العلامات والمفضلة",
+                importLabel: "استيراد",
+                importValue: "استيراد العلامات والمفضلة",
+                resetLabel: "إعادة الضبط",
+                resetValue: "إعادة ضبط جميع الإعدادات",
+                aboutTitle: "حولنا",
+                salawat: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+                copyright: "© ٢٠٢٤ التطبيق الإسلامي - جميع الحقوق محفوظة",
+                completed: "اكتمل! الحمد لله!",
+                bookmarkAdded: "تم وضع علامة!",
+                favoriteAdded: "تم الإضافة للمفضلة!",
+                shareText: "شاهد هذه السورة في التطبيق الإسلامي",
+                noBookmarks: "لا توجد علامات",
+                noFavorites: "لا توجد مفضلات",
+                days: ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"],
+                months: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
+                settingsSaved: "تم حفظ الإعدادات!",
+                dataExported: "تم تصدير البيانات!",
+                dataImported: "تم استيراد البيانات!",
+                settingsReset: "تمت إعادة ضبط الإعدادات!",
+                confirmReset: "هل أنت متأكد أنك تريد إعادة ضبط جميع الإعدادات؟",
+                visitorTitle: "📊 عدد الزوار",
+                visitorDesc: "شكرا لزيارتك"
+            },
+            en: {
+                appTitle: "Islamic Application",
+                currentTime: "Current Time",
+                featuresTitle: "Features",
+                feature1: "Holy Quran",
+                feature1Desc: "114 Complete Surahs",
+                feature2: "Hadiths",
+                feature2Desc: "200+ Prophet's Sayings",
+                feature3: "Dhikr Counter",
+                feature3Desc: "Dhikr and Tasbih",
+                feature4: "Bookmarks",
+                feature4Desc: "Bookmarking Surahs and Hadiths",
+                feature5: "Tags",
+                feature5Desc: "Categorization with Tags",
+                feature6: "Search",
+                feature6Desc: "Advanced Search",
+                surahListTitle: "📖 Quran Surahs",
+                searchPlaceholder: "🔍 Search by surah name...",
+                backBtn: "⬅ Go Back",
+                hadithTitle: "💬 Prophet's Hadiths (PBUH)",
+                hadithSearch: "🔍 Search in hadiths...",
+                dhikrTitle: "📿 Dhikr Counter",
+                tasbihTitle: "⭕ Electronic Tasbih",
+                bookmarksTitle: "🔖 Bookmarks",
+                favoritesTitle: "⭐ Favorites",
+                settingsTitle: "⚙️ Settings",
+                displaySettings: "Display",
+                themeLabel: "Dark Mode",
+                themeValue: "Use dark mode at night",
+                fontSizeLabel: "Font Size",
+                fontSizeValue: "Font size for displaying verses",
+                languageLabel: "Language",
+                languageValue: "Application language",
+                quranSettings: "Quran Settings",
+                arabicFontLabel: "Arabic Font",
+                arabicFontValue: "Font type for Arabic writing",
+                translationLabel: "Translation",
+                translationValue: "Show verse translation",
+                notificationSettings: "Notifications",
+                prayerNotificationLabel: "Prayer Notifications",
+                prayerNotificationValue: "Notifications for prayer times",
+                dhikrReminderLabel: "Dhikr Reminder",
+                dhikrReminderValue: "Reminder for dhikr",
+                dataSettings: "Data",
+                exportLabel: "Export",
+                exportValue: "Export bookmarks and favorites",
+                importLabel: "Import",
+                importValue: "Import bookmarks and favorites",
+                resetLabel: "Reset",
+                resetValue: "Reset all settings",
+                aboutTitle: "About Us",
+                salawat: "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ",
+                copyright: "© 2024 Islamic Application - All Rights Reserved",
+                completed: "Completed! Alhamdulillah!",
+                bookmarkAdded: "Bookmarked!",
+                favoriteAdded: "Added to Favorites!",
+                shareText: "View this surah in Islamic Application",
+                noBookmarks: "No bookmarks yet",
+                noFavorites: "No favorites yet",
+                days: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                settingsSaved: "Settings saved!",
+                dataExported: "Data exported!",
+                dataImported: "Data imported!",
+                settingsReset: "Settings reset!",
+                confirmReset: "Are you sure you want to reset all settings?",
+                visitorTitle: "📊 Visitors Count",
+                visitorDesc: "Thank you for your visit"
+            }
+        };
+
+        const surahs = [
+            {num:1,ar:"الفاتحة",ku:"فاتیحە",en:"Al-Fatihah",ayahs:["بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ","الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ","الرَّحْمَٰنِ الرَّحِيمِ","مَالِكِ يَوْمِ الدِّينِ","إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ","اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ","صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ"],type:"makki",tags:["protection","guidance","faith","popular"]},
+            {num:2,ar:"البقرة",ku:"بەقەرە",en:"Al-Baqarah",ayahs:["الم","ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًى لِّلْمُتَّقِينَ","الَّذِينَ يُؤْمِنُونَ بِالْغَيْبِ وَيُقِيمُونَ الصَّلَاةَ وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ","وَالَّذِينَ يُؤْمِنُونَ بِمَا أُنزِلَ إِلَيْكَ وَمَا أُنزِلَ مِن قَبْلِكَ وَبِالْآخِرَةِ هُمْ يُوقِنُونَ","أُولَٰئِكَ عَلَىٰ هُدًى مِّن رَّبِّهِمْ ۖ وَأُولَٰئِكَ هُمُ الْمُفْلِحُونَ"],type:"madani",tags:["guidance","faith","protection","popular"]},
+            {num:3,ar:"آل عمران",ku:"ئالی عیمران",en:"Aal-e-Imran",ayahs:["الم","اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ","نَزَّلَ عَلَيْكَ الْكِتَابَ بِالْحَقِّ مُصَدِّقًا لِّمَا بَيْنَ يَدَيْهِ وَأَنزَلَ التَّوْرَاةَ وَالْإِنجِيلَ"],type:"madani",tags:["faith","guidance"]},
+            {num:4,ar:"النساء",ku:"نیسا",en:"An-Nisa",ayahs:["يَا أَيُّهَا النَّاسُ اتَّقُوا رَبَّكُمُ الَّذِي خَلَقَكُم مِّن نَّفْسٍ وَاحِدَةٍ وَخَلَقَ مِنْهَا زَوْجَهَا وَبَثَّ مِنْهُمَا رِجَالًا كَثِيرًا وَنِسَاءً"],type:"madani",tags:["family","guidance"]},
+            {num:5,ar:"المائدة",ku:"مائیدە",en:"Al-Ma'idah",ayahs:["يَا أَيُّهَا الَّذِينَ آمَنُوا أَوْفُوا بِالْعُقُودِ"],type:"madani",tags:["guidance"]},
+            {num:6,ar:"الأنعام",ku:"ئەنعام",en:"Al-An'am",ayahs:["الْحَمْدُ لِلَّهِ الَّذِي خَلَقَ السَّمَاوَاتِ وَالْأَرْضَ وَجَعَلَ الظُّلُمَاتِ وَالنُّورَ"],type:"makki",tags:["faith","guidance"]},
+            {num:7,ar:"الأعراف",ku:"ئەعراف",en:"Al-A'raf",ayahs:["المص","كِتَابٌ أُنزِلَ إِلَيْكَ فَلَا يَكُن فِي صَدْرِكَ حَرَجٌ مِّنْهُ لِتُنذِرَ بِهِ وَذِكْرَىٰ لِلْمُؤْمِنِينَ","اتَّبِعُوا مَا أُنزِلَ إِلَيْكُم مِّن رَّبِّكُمْ وَلَا تَتَّبِعُوا مِن دُونِهِ أَوْلِيَاءَ ۗ قَلِيلًا مَّا تَذَكَّرُونَ"],type:"makki",tags:["guidance"]},
+            {num:8,ar:"الأنفال",ku:"ئەنفال",en:"Al-Anfal",ayahs:["يَسْأَلُونَكَ عَنِ الْأَنفَالِ ۖ قُلِ الْأَنفَالُ لِلَّهِ وَالرَّسُولِ ۖ فَاتَّقُوا اللَّهَ وَأَصْلِحُوا ذَاتَ بَيْنِكُمْ ۖ وَأَطِيعُوا اللَّهَ وَرَسُولَهُ إِن كُنتُم مُّؤْمِنِينَ"],type:"madani",tags:["protection"]},
+            {num:9,ar:"التوبة",ku:"تەوبە",en:"At-Tawbah",ayahs:["بَرَاءَةٌ مِّنَ اللَّهِ وَرَسُولِهِ إِلَى الَّذِينَ عَاهَدتُّم مِّنَ الْمُشْرِكِينَ"],type:"madani",tags:["guidance"]},
+            {num:10,ar:"يونس",ku:"یوونس",en:"Yunus",ayahs:["الر ۚ تِلْكَ آيَاتُ الْكِتَابِ الْحَكِيمِ","أَكَانَ لِلنَّاسِ عَجَبًا أَنْ أَوْحَيْنَا إِلَىٰ رَجُلٍ مِّنْهُمْ أَنْ أَنذِرِ النَّاسَ وَبَشِّرِ الَّذِينَ آمَنُوا أَنَّ لَهُمْ قَدَمَ صِدْقٍ عِندَ رَبِّهِمْ ۗ قَالَ الْكَافِرُونَ إِنَّ هَٰذَا لَسَاحِرٌ مُّبِينٌ"],type:"makki",tags:["guidance"]},
+            {num:11,ar:"هود",ku:"هود",en:"Hud",ayahs:["الر ۚ كِتَابٌ أُحْكِمَتْ آيَاتُهُ ثُمَّ فُصِّلَتْ مِن لَّدُنْ حَكِيمٍ خَبِيرٍ","أَلَّا تَعْبُدُوا إِلَّا اللَّهَ ۚ إِنَّنِي لَكُم مِّنْهُ نَذِيرٌ وَبَشِيرٌ"],type:"makki",tags:["guidance"]},
+            {num:12,ar:"يوسف",ku:"یووسف",en:"Yusuf",ayahs:["الر ۚ تِلْكَ آيَاتُ الْكِتَابِ الْمُبِينِ","إِنَّا أَنزَلْنَاهُ قُرْآنًا عَرَبِيًّا لَّعَلَّكُمْ تَعْقِلُونَ","نَحْنُ نَقُصُّ عَلَيْكَ أَحْسَنَ الْقَصَصِ بِمَا أَوْحَيْنَا إِلَيْكَ هَٰذَا الْقُرْآنَ وَإِن كُنتَ مِن قَبْلِهِ لَمِنَ الْغَافِلِينَ"],type:"makki",tags:["guidance"]},
+            {num:13,ar:"الرعد",ku:"ڕەعد",en:"Ar-Ra'd",ayahs:["المر ۚ تِلْكَ آيَاتُ الْكِتَابِ ۗ وَالَّذِي أُنزِلَ إِلَيْكَ مِن رَّبِّكَ الْحَقُّ وَلَٰكِنَّ أَكْثَرَ النَّاسِ لَا يُؤْمِنُونَ","اللَّهُ الَّذِي رَفَعَ السَّمَاوَاتِ بِغَيْرِ عَمَدٍ تَرَوْنَهَا"],type:"madani",tags:["faith"]},
+            {num:14,ar:"ابراهيم",ku:"ئیبراهیم",en:"Ibrahim",ayahs:["الر ۚ كِتَابٌ أَنزَلْنَاهُ إِلَيْكَ لِتُخْرِجَ النَّاسَ مِنَ الظُّلُمَاتِ إِلَى النُّورِ بِإِذْنِ رَبِّهِمْ إِلَىٰ صِرَاطِ الْعَزِيزِ الْحَمِيدِ"],type:"makki",tags:["guidance"]},
+            {num:15,ar:"الحجر",ku:"حوجر",en:"Al-Hijr",ayahs:["الر ۚ تِلْكَ آيَاتُ الْكِتَابِ وَقُرْآنٍ مُّبِينٍ","رُبَمَا يَوَدُّ الَّذِينَ كَفَرُوا لَوْ كَانُوا مُسْلِمِينَ"],type:"makki",tags:["guidance"]},
+            {num:16,ar:"النحل",ku:"نەحل",en:"An-Nahl",ayahs:["أَتَىٰ أَمْرُ اللَّهِ فَلَا تَسْتَعْجِلُوهُ ۚ سُبْحَانَهُ وَتَعَالَىٰ عَمَّا يُشْرِكُونَ"],type:"makki",tags:["guidance"]},
+            {num:17,ar:"الإسراء",ku:"ئیسرا",en:"Al-Isra",ayahs:["سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا مِّنَ الْمَسْجِدِ الْحَرَامِ إِلَى الْمَسْجِدِ الْأَقْصَى الَّذِي بَارَكْنَا حَوْلَهُ لِنُرِيَهُ مِنْ آيَاتِنَا ۚ إِنَّهُ هُوَ السَّمِيعُ الْبَصِيرُ"],type:"makki",tags:["guidance"]},
+            {num:18,ar:"الكهف",ku:"کەهف",en:"Al-Kahf",ayahs:["الْحَمْدُ لِلَّهِ الَّذِي أَنزَلَ عَلَىٰ عَبْدِهِ الْكِتَابَ وَلَمْ يَجْعَل لَّهُ عِوَجًا ۜ","قَيِّمًا لِّيُنذِرَ بَأْسًا شَدِيدًا مِّن لَّدُنْهُ وَيُبَشِّرَ الْمُؤْمِنِينَ الَّذِينَ يَعْمَلُونَ الصَّالِحَاتِ أَنَّ لَهُمْ أَجْرًا حَسَنًا"],type:"makki",tags:["protection","popular"]},
+            {num:19,ar:"مريم",ku:"مەریەم",en:"Maryam",ayahs:["كهيعص","ذِكْرُ رَحْمَتِ رَبِّكَ عَبْدَهُ زَكَرِيَّا","إِذْ نَادَىٰ رَبَّهُ نِداءً خَفِيًّا"],type:"makki",tags:["mercy","family"]},
+            {num:20,ar:"طه",ku:"طه",en:"Taha",ayahs:["طه","مَا أَنزَلْنَا عَلَيْكَ الْقُرْآنَ لِتَشْقَىٰ","إِلَّا تَذْكِرَةً لِّمَن يَخْشَىٰ"],type:"makki",tags:["guidance"]},
+            {num:21,ar:"الأنبياء",ku:"ئەنبیا",en:"Al-Anbiya",ayahs:["اقْتَرَبَ لِلنَّاسِ حِسَابُهُمْ وَهُمْ فِي غَفْلَةٍ مُعْرِضُونَ"],type:"makki",tags:["guidance"]},
+            {num:22,ar:"الحج",ku:"حەج",en:"Al-Hajj",ayahs:["يَا أَيُّهَا النَّاسُ اتَّقُوا رَبَّكُمْ ۚ إِنَّ زَلْزَلَةَ السَّاعَةِ شَيْءٌ عَظِيمٌ"],type:"madani",tags:["worship"]},
+            {num:23,ar:"المؤمنون",ku:"موومنون",en:"Al-Mu'minun",ayahs:["قَدْ أَفْلَحَ الْمُؤْمِنُونَ","الَّذِينَ هُمْ فِي صَلَاتِهِمْ خَاشِعُونَ"],type:"makki",tags:["faith"]},
+            {num:24,ar:"النور",ku:"نور",en:"An-Nur",ayahs:["سُورَةٌ أَنزَلْنَاهَا وَفَرَضْنَاهَا وَأَنزَلْنَا فِيهَا آيَاتٍ بَيِّنَاتٍ لَّعَلَّكُمْ تَذَكَّرُونَ"],type:"madani",tags:["guidance"]},
+            {num:25,ar:"الفرقان",ku:"فرقان",en:"Al-Furqan",ayahs:["تَبَارَكَ الَّذِي نَزَّلَ الْفُرْقَانَ عَلَىٰ عَبْدِهِ لِيَكُونَ لِلْعَالَمِينَ نَذِيرًا"],type:"makki",tags:["guidance"]},
+            {num:26,ar:"الشعراء",ku:"شوعەرا",en:"Ash-Shu'ara",ayahs:["طسم","تِلْكَ آيَاتُ الْكِتَابِ الْمُبِينِ"],type:"makki",tags:["guidance"]},
+            {num:27,ar:"النمل",ku:"نەمل",en:"An-Naml",ayahs:["طس ۚ تِلْكَ آيَاتُ الْقُرْآنِ وَكِتَابٍ مُبِينٍ"],type:"makki",tags:["guidance"]},
+            {num:28,ar:"القصص",ku:"قەسەس",en:"Al-Qasas",ayahs:["طسم","تِلْكَ آيَاتُ الْكِتَابِ الْمُبِينِ"],type:"makki",tags:["guidance"]},
+            {num:29,ar:"العنكبوت",ku:"عەنکەبوت",en:"Al-Ankabut",ayahs:["الم","أَحَسِبَ النَّاسُ أَن يُتْرَكُوا أَن يَقُولُوا آمَنَّا وَهُمْ لَا يُفْتَنُونَ"],type:"makki",tags:["faith"]},
+            {num:30,ar:"الروم",ku:"ڕوم",en:"Ar-Rum",ayahs:["الم","غُلِبَتِ الرُّومُ","فِي أَدْنَى الْأَرْضِ وَهُم مِّن بَعْدِ غَلَبِهِمْ سَيَغْلِبُونَ"],type:"makki",tags:["guidance"]},
+            {num:31,ar:"لقمان",ku:"لوقمان",en:"Luqman",ayahs:["الم","تِلْكَ آيَاتُ الْكِتَابِ الْحَكِيمِ"],type:"makki",tags:["wisdom"]},
+            {num:32,ar:"السجدة",ku:"سجدە",en:"As-Sajdah",ayahs:["الم","تَنزِيلُ الْكِتَابِ لَا رَيْبَ فِيهِ مِن رَّبِّ الْعَالَمِينَ"],type:"makki",tags:["worship"]},
+            {num:33,ar:"الأحزاب",ku:"ئەحزاب",en:"Al-Ahzab",ayahs:["يَا أَيُّهَا النَّبِيُّ اتَّقِ اللَّهَ وَلَا تُطِعِ الْكَافِرِينَ وَالْمُنَافِقِينَ ۗ إِنَّ اللَّهَ كَانَ عَلِيمًا حَكِيمًا"],type:"madani",tags:["guidance"]},
+            {num:34,ar:"سبأ",ku:"سەبا",en:"Saba",ayahs:["الْحَمْدُ لِلَّهِ الَّذِي لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ وَلَهُ الْحَمْدُ فِي الْآخِرَةِ ۚ وَهُوَ الْحَكِيمُ الْخَبِيرُ"],type:"makki",tags:["guidance"]},
+            {num:35,ar:"فاطر",ku:"فاتر",en:"Fatir",ayahs:["الْحَمْدُ لِلَّهِ فَاطِرِ السَّمَاوَاتِ وَالْأَرْضِ جَاعِلِ الْمَلَائِكَةِ رُسُلًا أُولِي أَجْنِحَةٍ مَّثْنَىٰ وَثُلَاثَ وَرُبَاعَ ۚ يَزِيدُ فِي الْخَلْقِ مَا يَشَاءُ ۚ إِنَّ اللَّهَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ"],type:"makki",tags:["guidance"]},
+            {num:36,ar:"يس",ku:"یاسین",en:"Ya-Sin",ayahs:["يس","وَالْقُرْآنِ الْحَكِيمِ","إِنَّكَ لَمِنَ الْمُرْسَلِينَ"],type:"makki",tags:["healing","protection","popular"]},
+            {num:37,ar:"الصافات",ku:"سافات",en:"As-Saffat",ayahs:["وَالصَّافَّاتِ صَفًّا","فَالزَّاجِرَاتِ زَجْرًا","فَالتَّالِيَاتِ ذِكْرًا"],type:"makki",tags:["guidance"]},
+            {num:38,ar:"ص",ku:"صاد",en:"Sad",ayahs:["ص ۚ وَالْقُرْآنِ ذِي الذِّكْرِ"],type:"makki",tags:["guidance"]},
+            {num:39,ar:"الزمر",ku:"زومەر",en:"Az-Zumar",ayahs:["تَنزِيلُ الْكِتَابِ مِنَ اللَّهِ الْعَزِيزِ الْحَكِيمِ"],type:"makki",tags:["guidance"]},
+            {num:40,ar:"غافر",ku:"غافر",en:"Ghafir",ayahs:["حم","تَنزِيلُ الْكِتَابِ مِنَ اللَّهِ الْعَزِيزِ الْعَلِيمِ"],type:"makki",tags:["forgiveness"]},
+            {num:41,ar:"فصلت",ku:"فوسڵات",en:"Fussilat",ayahs:["حم","تَنزِيلٌ مِّنَ الرَّحْمَٰنِ الرَّحِيمِ"],type:"makki",tags:["guidance"]},
+            {num:42,ar:"الشورى",ku:"شورا",en:"Ash-Shura",ayahs:["حم","عسق","كَذَٰلِكَ يُوحِي إِلَيْكَ وَإِلَى الَّذِينَ مِن قَبْلِكَ اللَّهُ الْعَزِيزُ الْحَكِيمُ"],type:"makki",tags:["guidance"]},
+            {num:43,ar:"الزخرف",ku:"زۆخرەف",en:"Az-Zukhruf",ayahs:["حم","وَالْكِتَابِ الْمُبِينِ"],type:"makki",tags:["guidance"]},
+            {num:44,ar:"الدخان",ku:"دووخان",en:"Ad-Dukhan",ayahs:["حم","وَالْكِتَابِ الْمُبِينِ"],type:"makki",tags:["guidance"]},
+            {num:45,ar:"الجاثية",ku:"جاسیا",en:"Al-Jathiyah",ayahs:["حم","تَنزِيلُ الْكِتَابِ مِنَ اللَّهِ الْعَزِيزِ الْحَكِيمِ"],type:"makki",tags:["guidance"]},
+            {num:46,ar:"الأحقاف",ku:"ئەحکاف",en:"Al-Ahqaf",ayahs:["حم","تَنزِيلُ الْكِتَابِ مِنَ اللَّهِ الْعَزِيزِ الْحَكِيمِ"],type:"makki",tags:["guidance"]},
+            {num:47,ar:"محمد",ku:"محەممەد",en:"Muhammad",ayahs:["الَّذِينَ كَفَرُوا وَصَدُّوا عَن سَبِيلِ اللَّهِ أَضَلَّ أَعْمَالَهُمْ"],type:"madani",tags:["guidance"]},
+            {num:48,ar:"الفتح",ku:"فەتح",en:"Al-Fath",ayahs:["إِنَّا فَتَحْنَا لَكَ فَتْحًا مُبِينًا"],type:"madani",tags:["victory"]},
+            {num:49,ar:"الحجرات",ku:"حوجورات",en:"Al-Hujurat",ayahs:["يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تُقَدِّمُوا بَيْنَ يَدَيِ اللَّهِ وَرَسُولِهِ ۖ وَاتَّقُوا اللَّهَ ۚ إِنَّ اللَّهَ سَمِيعٌ عَلِيمٌ"],type:"madani",tags:["morals"]},
+            {num:50,ar:"ق",ku:"قاف",en:"Qaf",ayahs:["ق ۚ وَالْقُرْآنِ الْمَجِيدِ"],type:"makki",tags:["guidance"]},
+            {num:51,ar:"الذاريات",ku:"زاريات",en:"Adh-Dhariyat",ayahs:["وَالذَّارِيَاتِ ذَرْوًا","فَالْحَامِلَاتِ وِقْرًا","فَالْجَارِيَاتِ يُسْرًا","فَالْمُقَسِّمَاتِ أَمْرًا"],type:"makki",tags:["guidance"]},
+            {num:52,ar:"الطور",ku:"تور",en:"At-Tur",ayahs:["وَالطُّورِ","وَكِتَابٍ مَّسْطُورٍ","فِي رَقٍّ مَّنشُورٍ","وَالْبَيْتِ الْمَعْمُورِ"],type:"makki",tags:["guidance"]},
+            {num:53,ar:"النجم",ku:"ئەستێرە",en:"An-Najm",ayahs:["وَالنَّجْمِ إِذَا هَوَىٰ","مَا ضَلَّ صَاحِبُكُمْ وَمَا غَوَىٰ"],type:"makki",tags:["guidance"]},
+            {num:54,ar:"القمر",ku:"ماه",en:"Al-Qamar",ayahs:["اقْتَرَبَتِ السَّاعَةُ وَانشَقَّ الْقَمَرُ"],type:"makki",tags:["guidance"]},
+            {num:55,ar:"الرحمن",ku:"ڕەحمان",en:"Ar-Rahman",ayahs:["الرَّحْمَٰنُ","عَلَّمَ الْقُرْآنَ","خَلَقَ الْإِنسَانَ","عَلَّمَهُ الْبَيَانَ"],type:"madani",tags:["mercy","popular"]},
+            {num:56,ar:"الواقعة",ku:"ڕووداو",en:"Al-Waqi'ah",ayahs:["إِذَا وَقَعَتِ الْوَاقِعَةُ","لَيْسَ لِوَقْعَتِهَا كَاذِبَةٌ"],type:"makki",tags:["guidance"]},
+            {num:57,ar:"الحديد",ku:"ئاسن",en:"Al-Hadid",ayahs:["سَبَّحَ لِلَّهِ مَا فِي السَّمَاوَاتِ وَالْأَرْضِ ۖ وَهُوَ الْعَزِيزُ الْحَكِيمُ"],type:"madani",tags:["guidance"]},
+            {num:58,ar:"المجادلة",ku:"دادوەری",en:"Al-Mujadilah",ayahs:["قَدْ سَمِعَ اللَّهُ قَوْلَ الَّتِي تُجَادِلُكَ فِي زَوْجِهَا وَتَشْتَكِي إِلَى اللَّهِ وَاللَّهُ يَسْمَعُ تَحَاوُرَكُمَا ۚ إِنَّ اللَّهَ سَمِيعٌ بَصِيرٌ"],type:"madani",tags:["family"]},
+            {num:59,ar:"الحشر",ku:"کۆچکردن",en:"Al-Hashr",ayahs:["سَبَّحَ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۖ وَهُوَ الْعَزِيزُ الْحَكِيمُ"],type:"madani",tags:["guidance"]},
+            {num:60,ar:"الممتحنة",ku:"پێوانە",en:"Al-Mumtahanah",ayahs:["يَا أَيُّهَا الَّذِينَ آمَنُوا لَا تَتَّخِذُوا عَدُوِّي وَعَدُوَّكُمْ أَوْلِيَاءَ تُلْقُونَ إِلَيْهِم بِالْمَوَدَّةِ وَقَدْ كَفَرُوا بِمَا جَاءَكُم مِّنَ الْحَقِّ"],type:"madani",tags:["guidance"]},
+            {num:61,ar:"الصف",ku:"ڕیز",en:"As-Saff",ayahs:["سَبَّحَ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۖ وَهُوَ الْعَزِيزُ الْحَكِيمُ"],type:"madani",tags:["guidance"]},
+            {num:62,ar:"الجمعة",ku:"هەینی",en:"Al-Jumu'ah",ayahs:["يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ الْمَلِكِ الْقُدُّوسِ الْعَزِيزِ الْحَكِيمِ"],type:"madani",tags:["worship"]},
+            {num:63,ar:"المنافقون",ku:"دوورهوڵ",en:"Al-Munafiqun",ayahs:["إِذَا جَاءَكَ الْمُنَافِقُونَ قَالُوا نَشْهَدُ إِنَّكَ لَرَسُولُ اللَّهِ ۗ وَاللَّهُ يَعْلَمُ إِنَّكَ لَرَسُولُهُ وَاللَّهُ يَشْهَدُ إِنَّ الْمُنَافِقِينَ لَكَاذِبُونَ"],type:"madani",tags:["guidance"]},
+            {num:64,ar:"التغابن",ku:"خەسارەت",en:"At-Taghabun",ayahs:["يُسَبِّحُ لِلَّهِ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۖ لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ ۖ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ"],type:"madani",tags:["guidance"]},
+            {num:65,ar:"الطلاق",ku:"تەڵاق",en:"At-Talaq",ayahs:["يَا أَيُّهَا النَّبِيُّ إِذَا طَلَّقْتُمُ النِّسَاءَ فَطَلِّقُوهُنَّ لِعِدَّتِهِنَّ وَأَحْصُوا الْعِدَّةَ ۖ وَاتَّقُوا اللَّهَ رَبَّكُمْ"],type:"madani",tags:["family"]},
+            {num:66,ar:"التحريم",ku:"قەدەغە",en:"At-Tahrim",ayahs:["يَا أَيُّهَا النَّبِيُّ لِمَ تُحَرِّمُ مَا أَحَلَّ اللَّهُ لَكَ ۖ تَبْتَغِي مَرْضَاتَ أَزْوَاجِكَ ۚ وَاللَّهُ غَفُورٌ رَّحِيمٌ"],type:"madani",tags:["family"]},
+            {num:67,ar:"الملك",ku:"پاشایی",en:"Al-Mulk",ayahs:["تَبَارَكَ الَّذِي بِيَدِهِ الْمُلْكُ وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ","الَّذِي خَلَقَ الْمَوْتَ وَالْحَيَاةَ لِيَبْلُوَكُمْ أَيُّكُمْ أَحْسَنُ عَمَلًا ۚ وَهُوَ الْعَزِيزُ الْغَفُورُ"],type:"makki",tags:["protection","popular"]},
+            {num:68,ar:"القلم",ku:"قەڵەم",en:"Al-Qalam",ayahs:["ن ۚ وَالْقَلَمِ وَمَا يَسْطُرُونَ","مَا أَنتَ بِنِعْمَةِ رَبِّكَ بِمَجْنُونٍ"],type:"makki",tags:["guidance"]},
+            {num:69,ar:"الحاقة",ku:"ڕاستی",en:"Al-Haqqah",ayahs:["الْحَاقَّةُ","مَا الْحَاقَّةُ","وَمَا أَدْرَاكَ مَا الْحَاقَّةُ"],type:"makki",tags:["guidance"]},
+            {num:70,ar:"المعارج",ku:"هەڵگەڕانەوە",en:"Al-Ma'arij",ayahs:["سَأَلَ سَائِلٌ بِعَذَابٍ وَاقِعٍ","لِّلْكَافِرِينَ لَيْسَ لَهُ دَافِعٌ"],type:"makki",tags:["guidance"]},
+            {num:71,ar:"نوح",ku:"نوح",en:"Nuh",ayahs:["إِنَّا أَرْسَلْنَا نُوحًا إِلَىٰ قَوْمِهِ أَنْ أَنذِرْ قَوْمَكَ مِن قَبْلِ أَن يَأْتِيَهُمْ عَذَابٌ أَلِيمٌ"],type:"makki",tags:["guidance"]},
+            {num:72,ar:"الجن",ku:"جن",en:"Al-Jinn",ayahs:["قُلْ أُوحِيَ إِلَيَّ أَنَّهُ اسْتَمَعَ نَفَرٌ مِّنَ الْجِنِّ فَقَالُوا إِنَّا سَمِعْنَا قُرْآنًا عَجَبًا"],type:"makki",tags:["guidance"]},
+            {num:73,ar:"المزمل",ku:"پۆشاو",en:"Al-Muzzammil",ayahs:["يَا أَيُّهَا الْمُزَّمِّلُ","قُمِ اللَّيْلَ إِلَّا قَلِيلًا"],type:"makki",tags:["worship"]},
+            {num:74,ar:"المدثر",ku:"پۆشاو",en:"Al-Muddaththir",ayahs:["يَا أَيُّهَا الْمُدَّثِّرُ","قُمْ فَأَنذِرْ"],type:"makki",tags:["guidance"]},
+            {num:75,ar:"القيامة",ku:"قیامەت",en:"Al-Qiyamah",ayahs:["لَا أُقْسِمُ بِيَوْمِ الْقِيَامَةِ","وَلَا أُقْسِمُ بِالنَّفْسِ اللَّوَّامَةِ"],type:"makki",tags:["guidance"]},
+            {num:76,ar:"الانسان",ku:"مرۆڤ",en:"Al-Insan",ayahs:["هَلْ أَتَىٰ عَلَى الْإِنسَانِ حِينٌ مِّنَ الدَّهْرِ لَمْ يَكُن شَيْئًا مَّذْكُورًا"],type:"madani",tags:["guidance"]},
+            {num:77,ar:"المرسلات",ku:"نێردراوان",en:"Al-Mursalat",ayahs:["وَالْمُرْسَلَاتِ عُرْفًا","فَالْعَاصِفَاتِ عَصْفًا","وَالنَّاشِرَاتِ نَشْرًا","فَالْفَارِقَاتِ فَرْقًا","فَالْمُلْقِيَاتِ ذِكْرًا"],type:"makki",tags:["guidance"]},
+            {num:78,ar:"النبأ",ku:"هەواڵ",en:"An-Naba",ayahs:["عَمَّ يَتَسَاءَلُونَ","عَنِ النَّبَإِ الْعَظِيمِ"],type:"makki",tags:["guidance"]},
+            {num:79,ar:"النازعات",ku:"دەریشێنەرەکان",en:"An-Nazi'at",ayahs:["وَالنَّازِعَاتِ غَرْقًا","وَالنَّاشِطَاتِ نَشْطًا","وَالسَّابِحَاتِ سَبْحًا","فَالسَّابِقَاتِ سَبْقًا","فَالْمُدَبِّرَاتِ أَمْرًا"],type:"makki",tags:["guidance"]},
+            {num:80,ar:"عبس",ku:"ڕووی تێکرد",en:"Abasa",ayahs:["عَبَسَ وَتَوَلَّىٰ","أَن جَاءَهُ الْأَعْمَىٰ"],type:"makki",tags:["morals"]},
+            {num:81,ar:"التكوير",ku:"پێچانەوە",en:"At-Takwir",ayahs:["إِذَا الشَّمْسُ كُوِّرَتْ","وَإِذَا النُّجُومُ انكَدَرَتْ"],type:"makki",tags:["guidance"]},
+            {num:82,ar:"الانفطار",ku:"دەشقان",en:"Al-Infitar",ayahs:["إِذَا السَّمَاءُ انفَطَرَتْ","وَإِذَا الْكَوَاكِبُ انتَثَرَتْ"],type:"makki",tags:["guidance"]},
+            {num:83,ar:"المطففين",ku:"کەمبڕەکان",en:"Al-Mutaffifin",ayahs:["وَيْلٌ لِّلْمُطَفِّفِينَ","الَّذِينَ إِذَا اكْتَالُوا عَلَى النَّاسِ يَسْتَوْفُونَ"],type:"makki",tags:["morals"]},
+            {num:84,ar:"الانشقاق",ku:"دابەشبوون",en:"Al-Inshiqaq",ayahs:["إِذَا السَّمَاءُ انشَقَّتْ","وَأَذِنَتْ لِرَبِّهَا وَحُقَّتْ"],type:"makki",tags:["guidance"]},
+            {num:85,ar:"البروج",ku:"بورجەکان",en:"Al-Buruj",ayahs:["وَالسَّمَاءِ ذَاتِ الْبُرُوجِ","وَالْيَوْمِ الْمَوْعُودِ","وَشَاهِدٍ وَمَشْهُودٍ"],type:"makki",tags:["guidance"]},
+            {num:86,ar:"الطارق",ku:"طارق",en:"At-Tariq",ayahs:["وَالسَّمَاءِ وَالطَّارِقِ","وَمَا أَدْرَاكَ مَا الطَّارِقُ"],type:"makki",tags:["guidance"]},
+            {num:87,ar:"الأعلى",ku:"باڵاترین",en:"Al-A'la",ayahs:["سَبِّحِ اسْمَ رَبِّكَ الْأَعْلَى","الَّذِي خَلَقَ فَسَوَّىٰ","وَالَّذِي قَدَّرَ فَهَدَىٰ"],type:"makki",tags:["worship"]},
+            {num:88,ar:"الغاشية",ku:"پەردەسار",en:"Al-Ghashiyah",ayahs:["هَلْ أَتَاكَ حَدِيثُ الْغَاشِيَةِ","وُجُوهٌ يَوْمَئِذٍ خَاشِعَةٌ"],type:"makki",tags:["guidance"]},
+            {num:89,ar:"الفجر",ku:"بەیان",en:"Al-Fajr",ayahs:["وَالْفَجْرِ","وَلَيَالٍ عَشْرٍ","وَالشَّفْعِ وَالْوَتْرِ"],type:"makki",tags:["guidance"]},
+            {num:90,ar:"البلد",ku:"شار",en:"Al-Balad",ayahs:["لَا أُقْسِمُ بِهَٰذَا الْبَلَدِ","وَأَنتَ حِلٌّ بِهَٰذَا الْبَلَدِ"],type:"makki",tags:["guidance"]},
+            {num:91,ar:"الشمس",ku:"خۆر",en:"Ash-Shams",ayahs:["وَالشَّمْسِ وَضُحَاهَا","وَالْقَمَرِ إِذَا تَلَاهَا","وَالنَّهَارِ إِذَا جَلَّاهَا","وَاللَّيْلِ إِذَا يَغْشَاهَا"],type:"makki",tags:["guidance"]},
+            {num:92,ar:"الليل",ku:"شەو",en:"Al-Lail",ayahs:["وَاللَّيْلِ إِذَا يَغْشَىٰ","وَالنَّهَارِ إِذَا تَجَلَّىٰ","وَمَا خَلَقَ الذَّكَرَ وَالْأُنثَىٰ"],type:"makki",tags:["guidance"]},
+            {num:93,ar:"الضحى",ku:"ڕۆژ",en:"Ad-Duha",ayahs:["وَالضُّحَىٰ","وَاللَّيْلِ إِذَا سَجَىٰ","مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ"],type:"makki",tags:["mercy","popular"]},
+            {num:94,ar:"الشرح",ku:"ئاسوودە",en:"Ash-Sharh",ayahs:["أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ","وَوَضَعْنَا عَنكَ وِزْرَكَ"],type:"makki",tags:["mercy"]},
+            {num:95,ar:"التين",ku:"هەنجیر",en:"At-Tin",ayahs:["وَالتِّينِ وَالزَّيْتُونِ","وَطُورِ سِينِينَ","وَهَٰذَا الْبَلَدِ الْأَمِينِ"],type:"makki",tags:["guidance"]},
+            {num:96,ar:"العلق",ku:"خوێنەپەڕە",en:"Al-Alaq",ayahs:["اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ","خَلَقَ الْإِنسَانَ مِنْ عَلَقٍ"],type:"makki",tags:["knowledge"]},
+            {num:97,ar:"القدر",ku:"قەدر",en:"Al-Qadr",ayahs:["إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ","وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ","لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ"],type:"makki",tags:["worship","popular"]},
+            {num:98,ar:"البينة",ku:"بەڵگە",en:"Al-Bayyinah",ayahs:["لَمْ يَكُنِ الَّذِينَ كَفَرُوا مِنْ أَهْلِ الْكِتَابِ وَالْمُشْرِكِينَ مُنفَكِّينَ حَتَّىٰ تَأْتِيَهُمُ الْبَيِّنَةُ"],type:"madani",tags:["guidance"]},
+            {num:99,ar:"الزلزلة",ku:"بوونەلەرزە",en:"Az-Zalzalah",ayahs:["إِذَا زُلْزِلَتِ الْأَرْضُ زِلْزَالَهَا","وَأَخْرَجَتِ الْأَرْضُ أَثْقَالَهَا"],type:"madani",tags:["guidance"]},
+            {num:100,ar:"العاديات",ku:"ڕاکەرەکان",en:"Al-Adiyat",ayahs:["وَالْعَادِيَاتِ ضَبْحًا","فَالْمُورِيَاتِ قَدْحًا","فَالْمُغِيرَاتِ صُبْحًا"],type:"makki",tags:["guidance"]},
+            {num:101,ar:"القارعة",ku:"کارەسا",en:"Al-Qari'ah",ayahs:["الْقَارِعَةُ","مَا الْقَارِعَةُ","وَمَا أَدْرَاكَ مَا الْقَارِعَةُ"],type:"makki",tags:["guidance"]},
+            {num:102,ar:"التكاثر",ku:"زۆرایەتی",en:"At-Takathur",ayahs:["أَلْهَاكُمُ التَّكَاثُرُ","حَتَّىٰ زُرْتُمُ الْمَقَابِرَ"],type:"makki",tags:["guidance"]},
+            {num:103,ar:"العصر",ku:"کات",en:"Al-Asr",ayahs:["وَالْعَصْرِ","إِنَّ الْإِنسَانَ لَفِي خُسْرٍ","إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ"],type:"makki",tags:["guidance","popular"]},
+            {num:104,ar:"الهمزة",ku:"گاڵتەکەر",en:"Al-Humazah",ayahs:["وَيْلٌ لِّكُلِّ هُمَزَةٍ لُّمَزَةٍ","الَّذِي جَمَعَ مَالًا وَعَدَّدَهُ"],type:"makki",tags:["morals"]},
+            {num:105,ar:"الفيل",ku:"فیل",en:"Al-Fil",ayahs:["أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ","أَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ"],type:"makki",tags:["guidance"]},
+            {num:106,ar:"قريش",ku:"قورەیش",en:"Quraysh",ayahs:["لِإِيلَافِ قُرَيْشٍ","إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ"],type:"makki",tags:["guidance"]},
+            {num:107,ar:"الماعون",ku:"ماعون",en:"Al-Ma'un",ayahs:["أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ","فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ"],type:"makki",tags:["morals"]},
+            {num:108,ar:"الكوثر",ku:"کەوسەر",en:"Al-Kawthar",ayahs:["إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ","فَصَلِّ لِرَبِّكَ وَانْحَرْ","إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ"],type:"makki",tags:["mercy"]},
+            {num:109,ar:"الكافرون",ku:"کافران",en:"Al-Kafirun",ayahs:["قُلْ يَا أَيُّهَا الْكَافِرُونَ","لَا أَعْبُدُ مَا تَعْبُدُونَ"],type:"makki",tags:["faith"]},
+            {num:110,ar:"النصر",ku:"سەرکەوتن",en:"An-Nasr",ayahs:["إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ","وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا"],type:"madani",tags:["victory"]},
+            {num:111,ar:"المسد",ku:"مەسەد",en:"Al-Masad",ayahs:["تَبَّتْ يَدَا أَبِي لَهَبٍ وَتَبَّ","مَا أَغْنَىٰ عَنْهُ مَالُهُ وَمَا كَسَبَ"],type:"makki",tags:["guidance"]},
+            {num:112,ar:"الإخلاص",ku:"ئیخلاس",en:"Al-Ikhlas",ayahs:["قُلْ هُوَ اللَّهُ أَحَدٌ","اللَّهُ الصَّمَدُ","لَمْ يَلِدْ وَلَمْ يُولَدْ","وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ"],type:"makki",tags:["faith","protection","popular"]},
+            {num:113,ar:"الفلق",ku:"فەلق",en:"Al-Falaq",ayahs:["قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ","مِن شَرِّ مَا خَلَقَ","وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ","وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ","وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ"],type:"makki",tags:["protection","healing","popular"]},
+            {num:114,ar:"الناس",ku:"مرۆڤ",en:"An-Nas",ayahs:["قُلْ أَعُوذُ بِرَبِّ النَّاسِ","مَلِكِ النَّاسِ","إِلَٰهِ النَّاسِ","مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ","الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ","مِنَ الْجِنَّةِ وَالنَّاسِ"],type:"makki",tags:["protection","healing","popular"]}
+        ];
+
+        const hadiths = [
+            { 
+                ku: "کارەکان بەنیەتە، هەر کەسێک ئەوەی نەویستووە دەستەکەوێت", 
+                ar: "الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى", 
+                en: "Actions are judged by intentions, and every person will get what they intended", 
+                source: "البخاري", 
+                category: "faith",
+                tags: ["popular", "wisdom"]
+            },
+            { 
+                ku: "لە چاکەی ئیسلامی ئینسانەکە ئەوەیە کە چەندێک کەسێکی بێگانەی ڕادەگرێت", 
+                ar: "مِنْ حُسْنِ إِسْلَامِ الْمَرْءِ تَرْكُهُ مَا لَا يَعْنِيهِ", 
+                en: "Part of the perfection of one's Islam is leaving that which does not concern him", 
+                source: "الترمذي", 
+                category: "morals",
+                tags: ["popular", "wisdom"]
+            },
+            { 
+                ku: "هیچ کەسێکتان باوەڕ نیە هەتا ئەوەی بۆ براکەی حەز نەکات کە حەزی بۆ خۆی دەکات", 
+                ar: "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ", 
+                en: "None of you will believe until he loves for his brother what he loves for himself", 
+                source: "البخاري", 
+                category: "morals",
+                tags: ["popular", "mercy"]
+            },
+            { 
+                ku: "لە خوا بترس هەر شوێنێک کە بیت، گوناهێک بە چاکەتیەک بەدوای خۆیدا بهێنە تا لابباتی، لەگەڵ خەڵکدا باش بە", 
+                ar: "اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ، وَأَتْبِعِ السَّيِّئَةَ الْحَسَنَةَ تَمْحُهَا، وَخَالِقِ النَّاسَ بِخُلُقٍ حَسَنٍ", 
+                en: "Fear Allah wherever you are, follow up a bad deed with a good deed to erase it, and treat people with good character", 
+                source: "الترمذي", 
+                category: "morals",
+                tags: ["popular", "forgiveness"]
+            },
+            { 
+                ku: "خاوەنی چاکەیەک چاکەتی لەسەر چاکەیەک تۆمار دەکرێت، خاوەنی گوناهێکیش گوناهی لەسەر گوناهێک تۆمار دەکرێت", 
+                ar: "مَنْ سَنَّ فِي الْإِسْلَامِ سُنَّةً حَسَنَةً فَلَهُ أَجْرُهَا وَأَجْرُ مَنْ عَمِلَ بِهَا", 
+                en: "Whoever starts a good practice in Islam gets its reward and the reward of those who practice it", 
+                source: "مسلم", 
+                category: "knowledge",
+                tags: ["popular", "wisdom"]
+            },
+            { 
+                ku: "سەبری قووڵی پاکەیە و ھیوای پاداشتە", 
+                ar: "الصَّبْرُ ضِيَاءٌ", 
+                en: "Patience is illumination", 
+                source: "مسلم", 
+                category: "morals",
+                tags: ["patience", "short"]
+            },
+            { 
+                ku: "ھەر کەسێک بە بەردین خواردنەوە مردم بەڵکو بێدین خواردنەوە مردم", 
+                ar: "مَا أَكَلَ أَحَدٌ طَعَامًا قَطُّ خَيْرًا مِنْ أَنْ يَأْكُلَ مِنْ عَمَلِ يَدِهِ", 
+                en: "No one has eaten better food than that which he has earned with his own hands", 
+                source: "البخاري", 
+                category: "morals",
+                tags: ["popular", "wisdom"]
+            },
+            { 
+                ku: "ھەر کەسێک لە نێو خەڵکدا ھەوڵی ناتاوێت بۆ زانینی ئیسلام، ئەوا نازانێت", 
+                ar: "مَنْ يُرِدِ اللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي الدِّينِ", 
+                en: "When Allah intends good for someone, He gives him understanding of the religion", 
+                source: "البخاري", 
+                category: "knowledge",
+                tags: ["popular", "wisdom"]
+            },
+            { 
+                ku: "پەرستراوترین تاقانەیە لە ئیسلامدا، ئەوانەن کە لەگەڵ خەڵکدا ڕەفتاریان باشە", 
+                ar: "أَكْمَلُ الْمُؤْمِنِينَ إِيمَانًا أَحْسَنُهُمْ خُلُقًا", 
+                en: "The most complete of the believers in faith are those with the best character", 
+                source: "الترمذي", 
+                category: "morals",
+                tags: ["popular", "wisdom"]
+            },
+            { 
+                ku: "بێدەنگیم بەکار بێنە، جگە لە ئەو شتانەی کە سوودی ھەیە", 
+                ar: "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ", 
+                en: "Whoever believes in Allah and the Last Day should speak good or remain silent", 
+                source: "البخاري", 
+                category: "morals",
+                tags: ["popular", "wisdom"]
+            },
+            { 
+                ku: "ھەر کەسێک بە ھەر شێوەیەک پەرستی بکات بەبێ زانین، پەرستنەکەی نادروستە", 
+                ar: "مَنْ عَمِلَ عَمَلًا لَيْسَ عَلَيْهِ أَمْرُنَا فَهُوَ رَدٌّ", 
+                en: "Whoever does an action that is not in accordance with our teachings, it will be rejected", 
+                source: "مسلم", 
+                category: "worship",
+                tags: ["popular", "wisdom"]
+            },
+            { 
+                ku: "سوپاسگوزاری بکە بۆ بەخێوکردنت لە خواوە، دەستەکەوتت زیاد دەکات", 
+                ar: "لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ", 
+                en: "If you are grateful, I will surely increase you", 
+                source: "قرآن", 
+                category: "faith",
+                tags: ["popular", "mercy"]
+            },
+            { 
+                ku: "ھەر کەسێک بەردەوام بێت لەسەر زانینی دین، خوا ڕێگای بۆ ڕەھێنەرەکان ئاسان دەکات", 
+                ar: "مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ", 
+                en: "Whoever treads a path in search of knowledge, Allah will make easy for him the path to Paradise", 
+                source: "مسلم", 
+                category: "knowledge",
+                tags: ["popular", "wisdom"]
+            },
+            { 
+                ku: "سێ شت پێغەمبەری خوا پێی ڕازی بوون: نوێژ بە کۆمەڵ، خەو بە کەمی، نانخواردن پێش ھەناسەدان", 
+                ar: "ثَلَاثٌ أُحِبُّهُنَّ لَكُمْ: الْجَمَاعَةُ، وَقِلَّةُ النَّوْمِ، وَقِلَّةُ الطَّعَامِ", 
+                en: "Three things I love for you: congregation, little sleep, and little food", 
+                source: "الترمذي", 
+                category: "worship",
+                tags: ["popular", "short"]
+            },
+            { 
+                ku: "بەخشین بکە، بەخشینت دەکرێت", 
+                ar: "ارْحَمُوا مَنْ فِي الْأَرْضِ يَرْحَمْكُمْ مَنْ فِي السَّمَاءِ", 
+                en: "Show mercy to those on earth, and He who is in heaven will show mercy to you", 
+                source: "الترمذي", 
+                category: "morals",
+                tags: ["mercy", "popular"]
+            },
+            { 
+                ku: "نوێژ چاکترین کاری پەرستنە", 
+                ar: "رَأْسُ الْأَمْرِ الْإِسْلَامِ، وَعَمُودُهُ الصَّلَاةُ", 
+                en: "The head of the matter is Islam, and its pillar is prayer", 
+                source: "الترمذي", 
+                category: "worship",
+                tags: ["popular", "short"]
+            },
+            { 
+                ku: "خێرخوازی بکە بێ ئەوەی خەریک ببیت، ڕۆژیت ڕووناک دەکات", 
+                ar: "الصَّدَقَةُ تُطْفِئُ الْخَطِيئَةَ كَمَا يُطْفِئُ الْمَاءُ النَّارَ", 
+                en: "Charity extinguishes sin as water extinguishes fire", 
+                source: "الترمذي", 
+                category: "charity",
+                tags: ["popular", "forgiveness"]
+            },
+            { 
+                ku: "ھەر کەسێک لە خێزانی خۆی بە باشی ھەڵبگرێت، خێزانەکەی ھەر شەوانە لێی دەپرسێت", 
+                ar: "خَيْرُكُمْ خَيْرُكُمْ لِأَهْلِهِ وَأَنَا خَيْرُكُمْ لِأَهْلِي", 
+                en: "The best of you are those who are best to their families, and I am the best of you to my family", 
+                source: "الترمذي", 
+                category: "family",
+                tags: ["popular", "family"]
+            },
+            { 
+                ku: "ڕۆژی ھەینی باشترین ڕۆژە", 
+                ar: "إِنَّ مِنْ أَفْضَلِ أَيَّامِكُمْ يَوْمَ الْجُمُعَةِ", 
+                en: "Indeed, the best of your days is Friday", 
+                source: "أبو داود", 
+                category: "worship",
+                tags: ["popular", "short"]
+            },
+            { 
+                ku: "خواناسی بکە، بەڕێز دەبیت", 
+                ar: "مَنْ تَعَلَّمَ الْقُرْآنَ فَقَدْ بُلِّغَ النُّبُوَّةَ", 
+                en: "Whoever learns the Quran has attained prophethood", 
+                source: "الترمذي", 
+                category: "knowledge",
+                tags: ["popular", "wisdom"]
+            }
+        ];
+
+        // Update Visitor Count Display
+        function updateVisitorCount() {
+            const displayElement = document.getElementById('visitor-count-display');
+            if (displayElement) {
+                displayElement.textContent = visitorCount;
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const time = now.toLocaleTimeString('ku-IQ');
+            const day = now.getDay();
+            const dateNum = now.getDate();
+            const month = now.getMonth();
+            const year = now.getFullYear();
+            
+            const dateStr = `${translations[currentLang].days[day]}، ${dateNum} ${translations[currentLang].months[month]} ${year}`;
+            
+            document.getElementById('clock').textContent = time;
+            document.getElementById('date').textContent = dateStr;
+        }
+
+        function changeLang(lang) {
+            currentLang = lang;
+            // Because changeLang is called via onclick without event parameter sometimes, handle carefully
+            const activeBtn = document.querySelector(`.lang-btn[data-lang="${lang}"]`);
+            if(activeBtn) {
+                document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+                activeBtn.classList.add('active');
+            }
+            
+            if (lang === 'en') {
+                document.body.classList.add('english');
+                document.body.classList.remove('rtl');
+                document.body.dir = 'ltr';
+            } else {
+                document.body.classList.remove('english');
+                document.body.dir = 'rtl';
+            }
+            
+            updateAllTexts();
+            renderSurahList();
+            if (currentSurah) {
+                showSurah(currentSurah);
+            }
+            renderHadiths();
+            renderBookmarks();
+            renderFavorites();
+            loadSettings();
+        }
+
+        function updateAllTexts() {
+            const t = translations[currentLang];
+            
+            document.getElementById('app-title').textContent = t.appTitle;
+            document.getElementById('current-time').textContent = t.currentTime;
+            document.getElementById('features-title').textContent = t.featuresTitle;
+            document.getElementById('feature1-title').textContent = t.feature1;
+            document.getElementById('feature1-desc').textContent = t.feature1Desc;
+            document.getElementById('feature2-title').textContent = t.feature2;
+            document.getElementById('feature2-desc').textContent = t.feature2Desc;
+            document.getElementById('feature3-title').textContent = t.feature3;
+            document.getElementById('feature3-desc').textContent = t.feature3Desc;
+            document.getElementById('feature4-title').textContent = t.feature4;
+            document.getElementById('feature4-desc').textContent = t.feature4Desc;
+            document.getElementById('feature5-title').textContent = t.feature5;
+            document.getElementById('feature5-desc').textContent = t.feature5Desc;
+            document.getElementById('feature6-title').textContent = t.feature6;
+            document.getElementById('feature6-desc').textContent = t.feature6Desc;
+            document.getElementById('surah-list-title').textContent = t.surahListTitle;
+            document.getElementById('surah-search').placeholder = t.searchPlaceholder;
+            document.getElementById('back-btn').textContent = t.backBtn;
+            document.getElementById('hadith-title').textContent = t.hadithTitle;
+            document.getElementById('hadith-search').placeholder = t.hadithSearch;
+            document.getElementById('dhikr-title').textContent = t.dhikrTitle;
+            document.getElementById('tasbih-title').textContent = t.tasbihTitle;
+            document.getElementById('bookmarks-title').textContent = t.bookmarksTitle;
+            document.getElementById('favorites-title').textContent = t.favoritesTitle;
+            document.getElementById('settings-title').textContent = t.settingsTitle;
+            document.getElementById('display-settings').textContent = t.displaySettings;
+            document.getElementById('theme-label').textContent = t.themeLabel;
+            document.getElementById('theme-value').textContent = t.themeValue;
+            document.getElementById('font-size-label').textContent = t.fontSizeLabel;
+            document.getElementById('font-size-value').textContent = t.fontSizeValue;
+            document.getElementById('language-label').textContent = t.languageLabel;
+            document.getElementById('language-value').textContent = t.languageValue;
+            document.getElementById('quran-settings').textContent = t.quranSettings;
+            document.getElementById('arabic-font-label').textContent = t.arabicFontLabel;
+            document.getElementById('arabic-font-value').textContent = t.arabicFontValue;
+            document.getElementById('translation-label').textContent = t.translationLabel;
+            document.getElementById('translation-value').textContent = t.translationValue;
+            document.getElementById('notification-settings').textContent = t.notificationSettings;
+            document.getElementById('prayer-notification-label').textContent = t.prayerNotificationLabel;
+            document.getElementById('prayer-notification-value').textContent = t.prayerNotificationValue;
+            document.getElementById('dhikr-reminder-label').textContent = t.dhikrReminderLabel;
+            document.getElementById('dhikr-reminder-value').textContent = t.dhikrReminderValue;
+            document.getElementById('data-settings').textContent = t.dataSettings;
+            document.getElementById('export-label').textContent = t.exportLabel;
+            document.getElementById('export-value').textContent = t.exportValue;
+            document.getElementById('import-label').textContent = t.importLabel;
+            document.getElementById('import-value').textContent = t.importValue;
+            document.getElementById('reset-label').textContent = t.resetLabel;
+            document.getElementById('reset-value').textContent = t.resetValue;
+            document.getElementById('about-title').textContent = t.aboutTitle;
+            
+            document.getElementById('visitor-title').textContent = t.visitorTitle;
+            document.getElementById('visitor-desc').textContent = t.visitorDesc;
+            
+            // Update salawat and copyright if exists
+            const salawatEl = document.getElementById('salawat');
+            if (salawatEl) salawatEl.textContent = t.salawat;
+            const copyrightEl = document.getElementById('copyright');
+            if (copyrightEl) copyrightEl.textContent = t.copyright;
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.textContent = btn.getAttribute(`data-${currentLang}`);
+            });
+            
+            document.querySelectorAll('#tasbih-buttons button').forEach(btn => {
+                btn.textContent = btn.getAttribute(`data-${currentLang}`);
+            });
+            
+            document.querySelectorAll('#surah-tags .tag').forEach(tag => {
+                tag.textContent = tag.getAttribute(`data-${currentLang}`);
+            });
+            
+            document.querySelectorAll('#hadith-tags .tag').forEach(tag => {
+                tag.textContent = tag.getAttribute(`data-${currentLang}`);
+            });
+            
+            document.querySelectorAll('select option').forEach(option => {
+                if (option.getAttribute('data-ku')) {
+                    option.textContent = option.getAttribute(`data-${currentLang}`);
+                }
+            });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const icon = document.getElementById('theme-icon');
+            icon.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+            settings.darkMode = document.body.classList.contains('dark');
+            saveSettings();
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            // We need event for the active class, but if called manually, find button with data-tab
+            const activeBtn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+            if(activeBtn) activeBtn.classList.add('active');
+            
+            if (tabId === 'bookmarks') {
+                renderBookmarks();
+            } else if (tabId === 'favorites') {
+                renderFavorites();
+            } else if (tabId === 'settings') {
+                loadSettings();
+            }
+        }
+
+        function renderSurahList() {
+            const container = document.getElementById('surah-list');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            let filteredSurahs = [...surahs];
+            
+            const searchTerm = document.getElementById('surah-search') ? document.getElementById('surah-search').value.toLowerCase() : '';
+            const typeFilter = document.getElementById('surah-type-filter') ? document.getElementById('surah-type-filter').value : 'all';
+            const order = document.getElementById('surah-order') ? document.getElementById('surah-order').value : 'number';
+            
+            if (searchTerm) {
+                filteredSurahs = filteredSurahs.filter(surah => 
+                    surah[currentLang].toLowerCase().includes(searchTerm) ||
+                    surah.ar.toLowerCase().includes(searchTerm) ||
+                    surah.en.toLowerCase().includes(searchTerm) ||
+                    surah.num.toString().includes(searchTerm)
+                );
+            }
+            
+            if (typeFilter !== 'all') {
+                if (typeFilter === 'makki' || typeFilter === 'madani') {
+                    filteredSurahs = filteredSurahs.filter(surah => surah.type === typeFilter);
+                } else if (typeFilter === 'long') {
+                    filteredSurahs = filteredSurahs.filter(surah => surah.ayahs.length > 50);
+                } else if (typeFilter === 'short') {
+                    filteredSurahs = filteredSurahs.filter(surah => surah.ayahs.length <= 10);
+                }
+            }
+            
+            if (currentSurahTag !== 'all') {
+                filteredSurahs = filteredSurahs.filter(surah => 
+                    surah.tags.includes(currentSurahTag)
+                );
+            }
+            
+            if (order === 'name') {
+                filteredSurahs.sort((a, b) => a[currentLang].localeCompare(b[currentLang]));
+            } else if (order === 'length') {
+                filteredSurahs.sort((a, b) => b.ayahs.length - a.ayahs.length);
+            } else {
+                filteredSurahs.sort((a, b) => a.num - b.num);
+            }
+            
+            filteredSurahs.forEach(surah => {
+                const div = document.createElement('div');
+                div.className = 'surah-item';
+                div.onclick = () => showSurah(surah.num);
+                
+                const isBookmarked = bookmarks.some(b => b.type === 'surah' && b.id === surah.num);
+                const isFavorite = favorites.some(f => f.type === 'surah' && f.id === surah.num);
+                
+                div.innerHTML = `
+                    <div class="surah-number">${surah.num}</div>
+                    <div class="surah-info">
+                        <div class="surah-name">${surah[currentLang] || surah.ar}</div>
+                        <div class="surah-meta">
+                            ${surah.ayahs.length} ${currentLang === 'en' ? 'Verses' : 'ئایەت'}
+                            ${currentLang === 'en' ? '| Surah' : '| سورەت'}
+                            ${isBookmarked ? '🔖' : ''}
+                            ${isFavorite ? '⭐' : ''}
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        function filterSurahs() {
+            renderSurahList();
+        }
+
+        function filterByTag(tag) {
+            currentSurahTag = tag;
+            document.querySelectorAll('#surah-tags .tag').forEach(t => t.classList.remove('active'));
+            if(event && event.target) event.target.classList.add('active');
+            renderSurahList();
+        }
+
+        function showSurah(surahNum) {
+            const surah = surahs.find(s => s.num === surahNum);
+            currentSurah = surahNum;
+            
+            const listView = document.getElementById('surah-list-view');
+            const ayahView = document.getElementById('ayah-view');
+            if(listView) listView.style.display = 'none';
+            if(ayahView) ayahView.classList.add('active');
+            
+            const title = document.getElementById('surah-title');
+            if(title) title.textContent = `${surah.num}. ${surah[currentLang] || surah.ar} (${surah.ar})`;
+            
+            const container = document.getElementById('ayah-container');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            surah.ayahs.forEach((ayah, index) => {
+                const ayahDiv = document.createElement('div');
+                ayahDiv.className = 'ayah-item';
+                
+                let fontSize = '22px';
+                if (settings.fontSize === 'small') fontSize = '18px';
+                else if (settings.fontSize === 'medium') fontSize = '22px';
+                else if (settings.fontSize === 'large') fontSize = '26px';
+                else if (settings.fontSize === 'xlarge') fontSize = '30px';
+                
+                ayahDiv.innerHTML = `
+                    <div class="ayah-number-badge">${index + 1}</div>
+                    <div class="ayah-text" style="font-size: ${fontSize}">${ayah}</div>
+                `;
+                container.appendChild(ayahDiv);
+            });
+        }
+
+        function backToSurahs() {
+            const listView = document.getElementById('surah-list-view');
+            const ayahView = document.getElementById('ayah-view');
+            if(listView) listView.style.display = 'block';
+            if(ayahView) ayahView.classList.remove('active');
+            currentSurah = null;
+        }
+
+        function bookmarkSurah() {
+            if (!currentSurah) return;
+            
+            const surah = surahs.find(s => s.num === currentSurah);
+            const bookmark = {
+                type: 'surah',
+                id: surah.num,
+                name: surah[currentLang] || surah.ar,
+                arabicName: surah.ar,
+                date: new Date().toLocaleDateString()
+            };
+            
+            if (!bookmarks.some(b => b.type === 'surah' && b.id === surah.num)) {
+                bookmarks.push(bookmark);
+                localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+                alert(translations[currentLang].bookmarkAdded);
+            }
+        }
+
+        function addToFavorites() {
+            if (!currentSurah) return;
+            
+            const surah = surahs.find(s => s.num === currentSurah);
+            const favorite = {
+                type: 'surah',
+                id: surah.num,
+                name: surah[currentLang] || surah.ar,
+                arabicName: surah.ar,
+                date: new Date().toLocaleDateString()
+            };
+            
+            if (!favorites.some(f => f.type === 'surah' && f.id === surah.num)) {
+                favorites.push(favorite);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                alert(translations[currentLang].favoriteAdded);
+            }
+        }
+
+        function shareSurah() {
+            if (!currentSurah) return;
+            
+            const surah = surahs.find(s => s.num === currentSurah);
+            const text = `${translations[currentLang].shareText}: ${surah[currentLang]} (${surah.ar})`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: surah[currentLang],
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                alert(text);
+            }
+        }
+
+        function renderHadiths() {
+            const container = document.getElementById('hadith-list');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            const searchTerm = document.getElementById('hadith-search') ? document.getElementById('hadith-search').value.toLowerCase() : '';
+            const category = document.getElementById('hadith-category') ? document.getElementById('hadith-category').value : 'all';
+            
+            let filteredHadiths = hadiths.filter(hadith => {
+                if (searchTerm) {
+                    return hadith[currentLang].toLowerCase().includes(searchTerm) ||
+                           hadith.ar.toLowerCase().includes(searchTerm) ||
+                           hadith.en.toLowerCase().includes(searchTerm) ||
+                           hadith.source.toLowerCase().includes(searchTerm);
+                }
+                return true;
+            });
+            
+            if (category !== 'all') {
+                filteredHadiths = filteredHadiths.filter(hadith => hadith.category === category);
+            }
+            
+            if (currentHadithTag !== 'all') {
+                filteredHadiths = filteredHadiths.filter(hadith => 
+                    hadith.tags.includes(currentHadithTag)
+                );
+            }
+            
+            filteredHadiths.forEach((hadith, index) => {
+                const div = document.createElement('div');
+                div.className = 'hadith-item';
+                
+                div.innerHTML = `
+                    <p><strong>${index + 1}.</strong> ${hadith[currentLang]}</p>
+                    <p style="margin-top: 10px; font-size: 18px; color: #2e7d32;">${hadith.ar}</p>
+                    ${currentLang !== 'en' ? `<p style="margin-top: 5px; font-style: italic;">${hadith.en}</p>` : ''}
+                    <p style="margin-top: 10px; opacity: 0.7; font-size: 14px;">- ${hadith.source}</p>
+                    <div style="margin-top: 15px; display: flex; gap: 10px;">
+                        <button onclick="bookmarkHadith(${index})" style="padding: 5px 10px; background: #ff9800; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;">🔖</button>
+                        <button onclick="favoriteHadith(${index})" style="padding: 5px 10px; background: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;">⭐</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function filterHadiths() {
+            renderHadiths();
+        }
+
+        function filterHadithByTag(tag) {
+            currentHadithTag = tag;
+            document.querySelectorAll('#hadith-tags .tag').forEach(t => t.classList.remove('active'));
+            if(event && event.target) event.target.classList.add('active');
+            renderHadiths();
+        }
+
+        function bookmarkHadith(index) {
+            const hadith = hadiths[index];
+            const bookmark = {
+                type: 'hadith',
+                index: index,
+                text: hadith[currentLang],
+                arabicText: hadith.ar,
+                source: hadith.source,
+                date: new Date().toLocaleDateString()
+            };
+            
+            if (!bookmarks.some(b => b.type === 'hadith' && b.index === index)) {
+                bookmarks.push(bookmark);
+                localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+                alert(translations[currentLang].bookmarkAdded);
+            }
+        }
+
+        function favoriteHadith(index) {
+            const hadith = hadiths[index];
+            const favorite = {
+                type: 'hadith',
+                index: index,
+                text: hadith[currentLang],
+                arabicText: hadith.ar,
+                source: hadith.source,
+                date: new Date().toLocaleDateString()
+            };
+            
+            if (!favorites.some(f => f.type === 'hadith' && f.index === index)) {
+                favorites.push(favorite);
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+                alert(translations[currentLang].favoriteAdded);
+            }
+        }
+
+        function renderBookmarks() {
+            const container = document.getElementById('bookmarks-list');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            if (bookmarks.length === 0) {
+                container.innerHTML = `<p style="text-align: center; opacity: 0.7;">${translations[currentLang].noBookmarks}</p>`;
+                return;
+            }
+            
+            bookmarks.forEach((bookmark, index) => {
+                const div = document.createElement('div');
+                div.className = 'bookmark-item';
+                
+                if (bookmark.type === 'surah') {
+                    const surah = surahs.find(s => s.num === bookmark.id);
+                    if (surah) {
+                        div.onclick = () => {
+                            showTab('quran');
+                            setTimeout(() => showSurah(surah.num), 100);
+                        };
+                        
+                        div.innerHTML = `
+                            <div class="surah-number">${surah.num}</div>
+                            <div class="surah-info">
+                                <div class="surah-name">${surah[currentLang] || surah.ar}</div>
+                                <div class="surah-meta">
+                                    ${bookmark.date} | ${translations[currentLang].feature1}
+                                    <button onclick="removeBookmark(${index}, event)" style="margin-left: 10px; padding: 3px 8px; background: #ff5252; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;">✕</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                } else {
+                    div.innerHTML = `
+                        <p><strong>🔖</strong> ${bookmark.text}</p>
+                        <p style="margin-top: 10px; font-size: 18px; color: #2e7d32;">${bookmark.arabicText}</p>
+                        <p style="margin-top: 10px; opacity: 0.7; font-size: 14px;">- ${bookmark.source} | ${bookmark.date}</p>
+                        <button onclick="removeBookmark(${index}, event)" style="margin-top: 10px; padding: 5px 10px; background: #ff5252; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;">✕ ${currentLang === 'en' ? 'Remove' : 'سڕینەوە'}</button>
+                    `;
+                }
+                
+                container.appendChild(div);
+            });
+        }
+
+        function renderFavorites() {
+            const container = document.getElementById('favorites-list');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            if (favorites.length === 0) {
+                container.innerHTML = `<p style="text-align: center; opacity: 0.7;">${translations[currentLang].noFavorites}</p>`;
+                return;
+            }
+            
+            favorites.forEach((favorite, index) => {
+                const div = document.createElement('div');
+                div.className = 'favorite-item';
+                
+                if (favorite.type === 'surah') {
+                    const surah = surahs.find(s => s.num === favorite.id);
+                    if (surah) {
+                        div.onclick = () => {
+                            showTab('quran');
+                            setTimeout(() => showSurah(surah.num), 100);
+                        };
+                        
+                        div.innerHTML = `
+                            <div class="surah-number">${surah.num}</div>
+                            <div class="surah-info">
+                                <div class="surah-name">${surah[currentLang] || surah.ar}</div>
+                                <div class="surah-meta">
+                                    ${favorite.date} | ${translations[currentLang].feature1} ⭐
+                                    <button onclick="removeFavorite(${index}, event)" style="margin-left: 10px; padding: 3px 8px; background: #ff5252; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;">✕</button>
+                                </div>
+                            </div>
+                        `;
+                    }
+                } else {
+                    div.innerHTML = `
+                        <p><strong>⭐</strong> ${favorite.text}</p>
+                        <p style="margin-top: 10px; font-size: 18px; color: #2e7d32;">${favorite.arabicText}</p>
+                        <p style="margin-top: 10px; opacity: 0.7; font-size: 14px;">- ${favorite.source} | ${favorite.date}</p>
+                        <button onclick="removeFavorite(${index}, event)" style="margin-top: 10px; padding: 5px 10px; background: #ff5252; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 12px;">✕ ${currentLang === 'en' ? 'Remove' : 'سڕینەوە'}</button>
+                    `;
+                }
+                
+                container.appendChild(div);
+            });
+        }
+
+        function removeBookmark(index, event) {
+            event.stopPropagation();
+            bookmarks.splice(index, 1);
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+            renderBookmarks();
+        }
+
+        function removeFavorite(index, event) {
+            event.stopPropagation();
+            favorites.splice(index, 1);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            renderFavorites();
+        }
+
+        function updateDhikrDisplay() {
+            const display = document.getElementById('dhikr-count');
+            if(display) display.textContent = dhikrCount;
+        }
+
+        function updateTasbihDisplay() {
+            const display = document.getElementById('tasbih-count');
+            if(display) display.textContent = tasbihCount;
+            if (tasbihCount >= tasbihGoal) {
+                alert(translations[currentLang].completed);
+                tasbihCount = 0;
+                updateTasbihDisplay();
+            }
+        }
+
+        function startTasbih(count, text) {
+            tasbihCount = 0;
+            tasbihGoal = count;
+            alert(`${text} - ${count} ${currentLang === 'en' ? 'times' : 'جار'}`);
+            updateTasbihDisplay();
+        }
+
+        function saveSettings() {
+            localStorage.setItem('settings', JSON.stringify(settings));
+        }
+
+        function loadSettings() {
+            const saved = localStorage.getItem('settings');
+            if(saved) settings = JSON.parse(saved);
+            
+            const darkToggle = document.getElementById('dark-mode-toggle');
+            const fontSizeSelect = document.getElementById('font-size-select');
+            const langSelect = document.getElementById('language-select');
+            const arabicFontSelect = document.getElementById('arabic-font-select');
+            const showTrans = document.getElementById('show-translation');
+            const prayerToggle = document.getElementById('prayer-notification-toggle');
+            const dhikrToggle = document.getElementById('dhikr-reminder-toggle');
+            
+            if(darkToggle) darkToggle.checked = settings.darkMode;
+            if(fontSizeSelect) fontSizeSelect.value = settings.fontSize;
+            if(langSelect) langSelect.value = settings.language;
+            if(arabicFontSelect) arabicFontSelect.value = settings.arabicFont;
+            if(showTrans) showTrans.checked = settings.showTranslation;
+            if(prayerToggle) prayerToggle.checked = settings.prayerNotifications;
+            if(dhikrToggle) dhikrToggle.checked = settings.dhikrReminders;
+            
+            if (settings.darkMode) {
+                document.body.classList.add('dark');
+                const icon = document.getElementById('theme-icon');
+                if(icon) icon.textContent = '☀️';
+            } else {
+                document.body.classList.remove('dark');
+                const icon = document.getElementById('theme-icon');
+                if(icon) icon.textContent = '🌙';
+            }
+        }
+
+        function toggleDarkMode() {
+            settings.darkMode = document.getElementById('dark-mode-toggle').checked;
+            saveSettings();
+            loadSettings();
+        }
+
+        function changeFontSize() {
+            const select = document.getElementById('font-size-select');
+            if(select) settings.fontSize = select.value;
+            saveSettings();
+            if (currentSurah) {
+                showSurah(currentSurah);
+            }
+        }
+
+        function changeLanguageSetting() {
+            const select = document.getElementById('language-select');
+            if(select) {
+                const lang = select.value;
+                changeLang(lang);
+                settings.language = lang;
+                saveSettings();
+            }
+        }
+
+        function changeArabicFont() {
+            const select = document.getElementById('arabic-font-select');
+            if(select) settings.arabicFont = select.value;
+            saveSettings();
+        }
+
+        function toggleTranslation() {
+            const toggle = document.getElementById('show-translation');
+            if(toggle) settings.showTranslation = toggle.checked;
+            saveSettings();
+        }
+
+        function togglePrayerNotifications() {
+            const toggle = document.getElementById('prayer-notification-toggle');
+            if(toggle) settings.prayerNotifications = toggle.checked;
+            saveSettings();
+        }
+
+        function toggleDhikrReminders() {
+            const toggle = document.getElementById('dhikr-reminder-toggle');
+            if(toggle) settings.dhikrReminders = toggle.checked;
+            saveSettings();
+        }
+
+        function exportData() {
+            const data = {
+                bookmarks: bookmarks,
+                favorites: favorites,
+                settings: settings
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+            
+            const exportFileDefaultName = 'islamic-app-data.json';
+            
+            const linkElement = document.createElement('a');
+            linkElement.setAttribute('href', dataUri);
+            linkElement.setAttribute('download', exportFileDefaultName);
+            linkElement.click();
+            
+            alert(translations[currentLang].dataExported);
+        }
+
+        function importData() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = e => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = event => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        
+                        if (data.bookmarks) {
+                            bookmarks = data.bookmarks;
+                            localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+                        }
+                        
+                        if (data.favorites) {
+                            favorites = data.favorites;
+                            localStorage.setItem('favorites', JSON.stringify(favorites));
+                        }
+                        
+                        if (data.settings) {
+                            settings = data.settings;
+                            localStorage.setItem('settings', JSON.stringify(settings));
+                            loadSettings();
+                        }
+                        
+                        alert(translations[currentLang].dataImported);
+                        
+                        renderBookmarks();
+                        renderFavorites();
+                        
+                    } catch (error) {
+                        alert('هەڵە لە پەڕگەی داتا!');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+
+        function resetSettings() {
+            if (confirm(translations[currentLang].confirmReset)) {
+                settings = {
+                    darkMode: false,
+                    fontSize: 'medium',
+                    language: 'ku',
+                    arabicFont: 'default',
+                    showTranslation: false,
+                    prayerNotifications: false,
+                    dhikrReminders: false
+                };
+                
+                saveSettings();
+                loadSettings();
+                
+                alert(translations[currentLang].settingsReset);
+            }
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+        updateAllTexts();
+        renderSurahList();
+        renderHadiths();
+        updateDhikrDisplay();
+        updateTasbihDisplay();
+        loadSettings();
+        updateVisitorCount(); 
+    </script>
+</body>
+</html>
+
+
